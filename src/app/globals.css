@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+
+    /* Language colors */
+    --color-javascript: #f7df1e;
+    --color-typescript: #3178c6;
+    --color-python: #3776ab;
+    --color-java: #ed8b00;
+    --color-cpp: #00599c;
+    --color-csharp: #239120;
+    --color-php: #777bb4;
+    --color-ruby: #cc342d;
+    --color-go: #00add8;
+    --color-rust: #000000;
+    --color-swift: #fa7343;
+    --color-kotlin: #7f52ff;
+    --color-dart: #0175c2;
+    --color-html: #e34f26;
+    --color-css: #1572b6;
+    --color-vue: #4fc08d;
+    --color-react: #61dafb;
+    --color-angular: #dd0031;
+    --color-svelte: #ff3e00;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .card-elevated {
+    @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+
+  .glass {
+    @apply backdrop-blur-md bg-white/75 border border-gray-200/30;
+  }
+
+  .dark .glass {
+    @apply bg-gray-900/75 border-white/10;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-muted;
+  }
+}
+
+/* Language color utilities */
+.lang-javascript { background-color: var(--color-javascript); }
+.lang-typescript { background-color: var(--color-typescript); }
+.lang-python { background-color: var(--color-python); }
+.lang-java { background-color: var(--color-java); }
+.lang-cpp { background-color: var(--color-cpp); }
+.lang-csharp { background-color: var(--color-csharp); }
+.lang-php { background-color: var(--color-php); }
+.lang-ruby { background-color: var(--color-ruby); }
+.lang-go { background-color: var(--color-go); }
+.lang-rust { background-color: var(--color-rust); }
+.lang-swift { background-color: var(--color-swift); }
+.lang-kotlin { background-color: var(--color-kotlin); }
+.lang-dart { background-color: var(--color-dart); }
+.lang-html { background-color: var(--color-html); }
+.lang-css { background-color: var(--color-css); }
+.lang-vue { background-color: var(--color-vue); }
+.lang-react { background-color: var(--color-react); }
+.lang-angular { background-color: var(--color-angular); }
+.lang-svelte { background-color: var(--color-svelte); }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
