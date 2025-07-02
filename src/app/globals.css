@@ -116,25 +116,63 @@
 }
 
 /* Language color utilities */
-.lang-javascript { background-color: var(--color-javascript); }
-.lang-typescript { background-color: var(--color-typescript); }
-.lang-python { background-color: var(--color-python); }
-.lang-java { background-color: var(--color-java); }
-.lang-cpp { background-color: var(--color-cpp); }
-.lang-csharp { background-color: var(--color-csharp); }
-.lang-php { background-color: var(--color-php); }
-.lang-ruby { background-color: var(--color-ruby); }
-.lang-go { background-color: var(--color-go); }
-.lang-rust { background-color: var(--color-rust); }
-.lang-swift { background-color: var(--color-swift); }
-.lang-kotlin { background-color: var(--color-kotlin); }
-.lang-dart { background-color: var(--color-dart); }
-.lang-html { background-color: var(--color-html); }
-.lang-css { background-color: var(--color-css); }
-.lang-vue { background-color: var(--color-vue); }
-.lang-react { background-color: var(--color-react); }
-.lang-angular { background-color: var(--color-angular); }
-.lang-svelte { background-color: var(--color-svelte); }
+.lang-javascript {
+  background-color: var(--color-javascript);
+}
+.lang-typescript {
+  background-color: var(--color-typescript);
+}
+.lang-python {
+  background-color: var(--color-python);
+}
+.lang-java {
+  background-color: var(--color-java);
+}
+.lang-cpp {
+  background-color: var(--color-cpp);
+}
+.lang-csharp {
+  background-color: var(--color-csharp);
+}
+.lang-php {
+  background-color: var(--color-php);
+}
+.lang-ruby {
+  background-color: var(--color-ruby);
+}
+.lang-go {
+  background-color: var(--color-go);
+}
+.lang-rust {
+  background-color: var(--color-rust);
+}
+.lang-swift {
+  background-color: var(--color-swift);
+}
+.lang-kotlin {
+  background-color: var(--color-kotlin);
+}
+.lang-dart {
+  background-color: var(--color-dart);
+}
+.lang-html {
+  background-color: var(--color-html);
+}
+.lang-css {
+  background-color: var(--color-css);
+}
+.lang-vue {
+  background-color: var(--color-vue);
+}
+.lang-react {
+  background-color: var(--color-react);
+}
+.lang-angular {
+  background-color: var(--color-angular);
+}
+.lang-svelte {
+  background-color: var(--color-svelte);
+}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {

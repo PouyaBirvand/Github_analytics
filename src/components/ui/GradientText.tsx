@@ -14,7 +14,7 @@ export const GradientText: React.FC<GradientTextProps> = ({
   text,
   className = '',
   gradient = 'from-blue-600 via-purple-600 to-pink-600',
-  animate = true
+  animate = true,
 }) => {
   if (animate) {
     return (
@@ -26,10 +26,10 @@ export const GradientText: React.FC<GradientTextProps> = ({
           duration: 3,
           repeat: Infinity,
           repeatType: 'reverse',
-          ease: 'easeInOut'
+          ease: 'easeInOut',
         }}
         style={{
-          backgroundSize: '200% 200%'
+          backgroundSize: '200% 200%',
         }}
       >
         {text}
@@ -38,7 +38,9 @@ export const GradientText: React.FC<GradientTextProps> = ({
   }
 
   return (
-    <h1 className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent ${className}`}>
+    <h1
+      className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent ${className}`}
+    >
       {text}
     </h1>
   );

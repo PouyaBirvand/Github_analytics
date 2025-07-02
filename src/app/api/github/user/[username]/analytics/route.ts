@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const { username } = params;
-    
+
     if (!username) {
       return NextResponse.json(
         { error: 'Username is required' },
@@ -16,7 +16,7 @@ export async function GET(
     }
 
     const githubService = new GitHubService();
-    
+
     const [skills, contributionCalendar] = await Promise.all([
       githubService.analyzeUserSkills(username),
       githubService.getContributionCalendar(username),

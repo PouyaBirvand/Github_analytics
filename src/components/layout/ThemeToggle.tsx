@@ -45,7 +45,7 @@ export const ThemeToggle: React.FC = () => {
                   <CurrentIcon className="h-5 w-5" />
                 </motion.div>
               </AnimatePresence>
-              
+
               {/* Glow effect */}
               <motion.div
                 className="absolute inset-0 rounded-full bg-primary/20 blur-md"
@@ -56,7 +56,7 @@ export const ThemeToggle: React.FC = () => {
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: 'easeInOut',
                 }}
               />
             </div>
@@ -64,9 +64,9 @@ export const ThemeToggle: React.FC = () => {
           </Button>
         </motion.div>
       </DropdownMenuTrigger>
-      
-      <DropdownMenuContent 
-        align="end" 
+
+      <DropdownMenuContent
+        align="end"
         className="w-48 bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl"
       >
         {themes.map((themeOption, index) => {
@@ -81,8 +81,8 @@ export const ThemeToggle: React.FC = () => {
               <DropdownMenuItem
                 onClick={() => setTheme(themeOption.value)}
                 className={`flex items-center gap-3 p-3 cursor-pointer transition-all duration-200 ${
-                  theme === themeOption.value 
-                    ? 'bg-primary/10 text-primary' 
+                  theme === themeOption.value
+                    ? 'bg-primary/10 text-primary'
                     : 'hover:bg-accent/50'
                 }`}
               >
@@ -93,7 +93,7 @@ export const ThemeToggle: React.FC = () => {
                     className="ml-auto w-2 h-2 bg-primary rounded-full"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
                 )}
               </DropdownMenuItem>

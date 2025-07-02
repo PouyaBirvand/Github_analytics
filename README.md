@@ -29,12 +29,14 @@ A comprehensive GitHub profile analytics dashboard built with Next.js, TypeScrip
 ## 📦 Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/github-analytics-pro.git
 cd github-analytics-pro
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -44,16 +46,19 @@ pnpm install
 ```
 
 3. Set up environment variables:
+
 ```bash
 cp .env.example .env.local
 ```
 
 4. Add your GitHub token (optional, for higher rate limits):
+
 ```env
 GITHUB_TOKEN=your_github_personal_access_token_here
 ```
 
 5. Run the development server:
+
 ```bash
 npm run dev
 # or
@@ -86,18 +91,21 @@ You can customize the application by modifying:
 ## 📊 Analytics Features
 
 ### Profile Analytics
+
 - User information and bio
 - Follower/following statistics
 - Repository counts and metrics
 - Account creation date and activity
 
 ### Repository Insights
+
 - Top repositories by stars
 - Language distribution analysis
 - Repository activity patterns
 - Trending repository detection
 
 ### Visualization Components
+
 - Interactive pie charts for languages
 - Skill proficiency radar charts
 - Commit activity bar charts

@@ -19,7 +19,7 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
       gradient: 'from-green-500 to-emerald-500',
       description: 'Code contributions',
       trend: '+12%',
-      progress: 85
+      progress: 85,
     },
     {
       icon: Calendar,
@@ -28,7 +28,7 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
       gradient: 'from-blue-500 to-cyan-500',
       description: 'Commits per day',
       trend: '+5%',
-      progress: 70
+      progress: 70,
     },
     {
       icon: Code,
@@ -37,7 +37,7 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
       gradient: 'from-purple-500 to-pink-500',
       description: 'Programming languages',
       trend: '+2',
-      progress: 60
+      progress: 60,
     },
     {
       icon: Zap,
@@ -46,7 +46,7 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
       gradient: 'from-orange-500 to-red-500',
       description: 'Technologies used',
       trend: '+3',
-      progress: 75
+      progress: 75,
     },
   ];
 
@@ -72,12 +72,13 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
             className="group"
           >
             <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-background to-muted/30 hover:shadow-2xl transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-br opacity-5 group-hover:opacity-10 transition-opacity" 
-                   style={{
-                     background: `linear-gradient(135deg, ${stat.gradient.split(' ')[1]}, ${stat.gradient.split(' ')[3]})`
-                   }} 
+              <div
+                className="absolute inset-0 bg-gradient-to-br opacity-5 group-hover:opacity-10 transition-opacity"
+                style={{
+                  background: `linear-gradient(135deg, ${stat.gradient.split(' ')[1]}, ${stat.gradient.split(' ')[3]})`,
+                }}
               />
-              
+
               <CardContent className="relative p-6 space-y-4">
                 <div className="flex items-start justify-between">
                   <motion.div
@@ -87,7 +88,7 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
                   >
                     <stat.icon className="w-6 h-6 text-white" />
                   </motion.div>
-                  
+
                   <motion.div
                     className="flex items-center gap-1 px-2 py-1 bg-green-500/10 text-green-600 rounded-full text-xs font-medium"
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -108,7 +109,7 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
                   >
                     {stat.value}
                   </motion.div>
-                  
+
                   <div>
                     <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
                       {stat.label}
@@ -130,7 +131,11 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
                     className={`h-full bg-gradient-to-r ${stat.gradient} rounded-full`}
                     initial={{ width: 0 }}
                     animate={{ width: `${stat.progress}%` }}
-                    transition={{ delay: index * 0.1 + 0.6, duration: 1, ease: "easeOut" }}
+                    transition={{
+                      delay: index * 0.1 + 0.6,
+                      duration: 1,
+                      ease: 'easeOut',
+                    }}
                   />
                 </motion.div>
               </CardContent>

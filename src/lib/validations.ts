@@ -6,11 +6,11 @@
 //     const githubUsernameRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/;
 //     return githubUsernameRegex.test(username);
 //   }
-  
+
 //   export function sanitizeUsername(username: string): string {
 //     return username.trim().toLowerCase();
 //   }
-  
+
 //   export function validateRepositoryData(repo: any): boolean {
 //     return (
 //       repo &&
@@ -21,7 +21,7 @@
 //       typeof repo.forks_count === 'number'
 //     );
 //   }
-  
+
 //   export function validateUserData(user: any): boolean {
 //     return (
 //       user &&
@@ -33,4 +33,3 @@
 //       typeof user.following === 'number'
 //     );
 //   }
-  

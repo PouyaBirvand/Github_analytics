@@ -10,12 +10,17 @@ interface ContributionHeatmapProps {
   data: CommitActivity[];
 }
 
-export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }) => {
+export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({
+  data,
+}) => {
   const getIntensity = (count: number): string => {
     if (count === 0) return 'bg-muted/30 hover:bg-muted/50';
-    if (count <= 2) return 'bg-green-200/60 hover:bg-green-200 dark:bg-green-900/60 dark:hover:bg-green-900';
-    if (count <= 4) return 'bg-green-300/70 hover:bg-green-300 dark:bg-green-700/70 dark:hover:bg-green-700';
-    if (count <= 6) return 'bg-green-400/80 hover:bg-green-400 dark:bg-green-600/80 dark:hover:bg-green-600';
+    if (count <= 2)
+      return 'bg-green-200/60 hover:bg-green-200 dark:bg-green-900/60 dark:hover:bg-green-900';
+    if (count <= 4)
+      return 'bg-green-300/70 hover:bg-green-300 dark:bg-green-700/70 dark:hover:bg-green-700';
+    if (count <= 6)
+      return 'bg-green-400/80 hover:bg-green-400 dark:bg-green-600/80 dark:hover:bg-green-600';
     return 'bg-green-500 hover:bg-green-600 dark:bg-green-500 dark:hover:bg-green-400';
   };
 
@@ -32,7 +37,20 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
     weeks.push(data.slice(i, i + 7));
   }
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   const totalContributions = data.reduce((sum, day) => sum + day.count, 0);
@@ -43,7 +61,7 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
   function calculateMaxStreak(data: CommitActivity[]): number {
     let maxStreak = 0;
     let currentStreak = 0;
-    
+
     for (const day of data) {
       if (day.count > 0) {
         currentStreak++;
@@ -145,7 +163,9 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
             {/* Month labels */}
             <div className="flex justify-between text-xs text-muted-foreground px-8">
               {months.map(month => (
-                <span key={month} className="font-medium">{month}</span>
+                <span key={month} className="font-medium">
+                  {month}
+                </span>
               ))}
             </div>
 
@@ -155,7 +175,9 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
               <div className="flex flex-col gap-1 text-xs text-muted-foreground pr-3 justify-center">
                 {days.map((day, index) => (
                   <div key={day} className="h-3 flex items-center">
-                    {index % 2 === 1 && <span className="font-medium">{day}</span>}
+                    {index % 2 === 1 && (
+                      <span className="font-medium">{day}</span>
+                    )}
                   </div>
                 ))}
               </div>
@@ -167,7 +189,10 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
                     key={weekIndex}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + weekIndex * 0.01, duration: 0.3 }}
+                    transition={{
+                      delay: 0.5 + weekIndex * 0.01,
+                      duration: 0.3,
+                    }}
                     className="flex flex-col gap-1"
                   >
                     {week.map((day, dayIndex) => (
@@ -177,14 +202,17 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
                           'w-3 h-3 rounded-sm transition-all duration-200 cursor-pointer border border-border/20',
                           getIntensity(day.count)
                         )}
-                        whileHover={{ 
-                          scale: 1.3, 
+                        whileHover={{
+                          scale: 1.3,
                           zIndex: 10,
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)' 
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                         }}
                         title={`${day.count} contributions on ${day.date}`}
                         style={{
-                          boxShadow: day.count > 0 ? `0 0 ${day.count * 2}px rgba(34, 197, 94, 0.3)` : 'none'
+                          boxShadow:
+                            day.count > 0
+                              ? `0 0 ${day.count * 2}px rgba(34, 197, 94, 0.3)`
+                              : 'none',
                         }}
                       />
                     ))}
@@ -205,7 +233,10 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ data }
                 {[0, 1, 3, 5, 7].map(count => (
                   <motion.div
                     key={count}
-                    className={cn('w-3 h-3 rounded-sm border border-border/20', getIntensity(count))}
+                    className={cn(
+                      'w-3 h-3 rounded-sm border border-border/20',
+                      getIntensity(count)
+                    )}
                     whileHover={{ scale: 1.2 }}
                     transition={{ duration: 0.2 }}
                   />

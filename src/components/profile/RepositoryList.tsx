@@ -5,15 +5,29 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Repository } from '@/types/github';
 import { formatNumber, getLanguageColor } from '@/lib/utils';
-import { Star, GitFork, ExternalLink, Code, Calendar, Eye, Filter, Grid, List } from 'lucide-react';
+import {
+  Star,
+  GitFork,
+  ExternalLink,
+  Code,
+  Calendar,
+  Eye,
+  Filter,
+  Grid,
+  List,
+} from 'lucide-react';
 
 interface RepositoryListProps {
   repositories: Repository[];
 }
 
-export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) => {
+export const RepositoryList: React.FC<RepositoryListProps> = ({
+  repositories,
+}) => {
   const [showAll, setShowAll] = useState(false);
-  const [sortBy, setSortBy] = useState<'stars' | 'updated' | 'name' | 'forks'>('stars');
+  const [sortBy, setSortBy] = useState<'stars' | 'updated' | 'name' | 'forks'>(
+    'stars'
+  );
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const sortedRepos = [...repositories].sort((a, b) => {
@@ -21,7 +35,9 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
       case 'stars':
         return b.stargazers_count - a.stargazers_count;
       case 'updated':
-        return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+        return (
+          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        );
       case 'name':
         return a.name.localeCompare(b.name);
       case 'forks':
@@ -37,7 +53,7 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
     { value: 'stars', label: 'Stars', icon: Star },
     { value: 'updated', label: 'Updated', icon: Calendar },
     { value: 'name', label: 'Name', icon: Code },
-    { value: 'forks', label: 'Forks', icon: GitFork }
+    { value: 'forks', label: 'Forks', icon: GitFork },
   ];
 
   return (
@@ -96,7 +112,7 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
               {/* Sort Options */}
               <div className="flex items-center gap-1 p-1 bg-muted/30 rounded-lg">
                 <Filter className="w-4 h-4 text-muted-foreground ml-2" />
-                {sortOptions.map((option) => (
+                {sortOptions.map(option => (
                   <Button
                     key={option.value}
                     variant={sortBy === option.value ? 'default' : 'ghost'}
@@ -122,9 +138,9 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
               className={
-                viewMode === 'grid' 
-                  ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" 
-                  : "space-y-4"
+                viewMode === 'grid'
+                  ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'
+                  : 'space-y-4'
               }
             >
               {displayedRepos.map((repo, index) => (
@@ -136,18 +152,24 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   className="group"
                 >
-                  <Card className={`
+                  <Card
+                    className={`
                     h-full border-0 bg-gradient-to-br from-background to-muted/20 
                     hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 
                     hover:-translate-y-1 overflow-hidden
                     ${viewMode === 'list' ? 'flex flex-row' : ''}
-                  `}>
-                    <CardContent className={`p-6 ${viewMode === 'list' ? 'flex-1' : ''}`}>
-                      <div className={`space-y-4 ${viewMode === 'list' ? 'flex items-center justify-between' : ''}`}>
+                  `}
+                  >
+                    <CardContent
+                      className={`p-6 ${viewMode === 'list' ? 'flex-1' : ''}`}
+                    >
+                      <div
+                        className={`space-y-4 ${viewMode === 'list' ? 'flex items-center justify-between' : ''}`}
+                      >
                         {/* Repository Header */}
                         <div className={viewMode === 'list' ? 'flex-1' : ''}>
                           <div className="flex items-start justify-between mb-3">
-                            <motion.h3 
+                            <motion.h3
                               className="font-bold text-lg group-hover:text-primary transition-colors line-clamp-1"
                               whileHover={{ scale: 1.02 }}
                             >
@@ -161,7 +183,7 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
                                 <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                               </a>
                             </motion.h3>
-                            
+
                             {repo.private && (
                               <span className="px-2 py-1 text-xs bg-orange-500/10 text-orange-600 rounded-full border border-orange-500/20">
                                 Private
@@ -170,87 +192,108 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
                           </div>
 
                           {repo.description && (
-                            <p className={`text-sm text-muted-foreground leading-relaxed ${
-                              viewMode === 'list' ? 'line-clamp-1' : 'line-clamp-2'
-                            }`}>
+                            <p
+                              className={`text-sm text-muted-foreground leading-relaxed ${
+                                viewMode === 'list'
+                                  ? 'line-clamp-1'
+                                  : 'line-clamp-2'
+                              }`}
+                            >
                               {repo.description}
                             </p>
                           )}
                         </div>
 
                         {/* Repository Stats */}
-                        <div className={`flex items-center gap-4 text-sm text-muted-foreground ${
-                          viewMode === 'list' ? 'flex-shrink-0' : 'flex-wrap'
-                        }`}>
+                        <div
+                          className={`flex items-center gap-4 text-sm text-muted-foreground ${
+                            viewMode === 'list' ? 'flex-shrink-0' : 'flex-wrap'
+                          }`}
+                        >
                           {repo.language && (
-                            <motion.div 
+                            <motion.div
                               className="flex items-center gap-2 px-2 py-1 bg-muted/30 rounded-lg"
                               whileHover={{ scale: 1.05 }}
                             >
                               <div
                                 className="w-3 h-3 rounded-full shadow-sm"
-                                style={{ backgroundColor: getLanguageColor(repo.language) }}
+                                style={{
+                                  backgroundColor: getLanguageColor(
+                                    repo.language
+                                  ),
+                                }}
                               />
-                              <span className="font-medium">{repo.language}</span>
+                              <span className="font-medium">
+                                {repo.language}
+                              </span>
                             </motion.div>
                           )}
-                          
-                          <motion.div 
+
+                          <motion.div
                             className="flex items-center gap-1 px-2 py-1 bg-yellow-500/10 text-yellow-600 rounded-lg"
                             whileHover={{ scale: 1.05 }}
                           >
                             <Star className="w-4 h-4" />
-                            <span className="font-medium">{formatNumber(repo.stargazers_count)}</span>
+                            <span className="font-medium">
+                              {formatNumber(repo.stargazers_count)}
+                            </span>
                           </motion.div>
-                          
-                          <motion.div 
+
+                          <motion.div
                             className="flex items-center gap-1 px-2 py-1 bg-blue-500/10 text-blue-600 rounded-lg"
                             whileHover={{ scale: 1.05 }}
                           >
                             <GitFork className="w-4 h-4" />
-                            <span className="font-medium">{formatNumber(repo.forks_count)}</span>
+                            <span className="font-medium">
+                              {formatNumber(repo.forks_count)}
+                            </span>
                           </motion.div>
 
                           {repo.size > 0 && (
-                            <motion.div 
+                            <motion.div
                               className="flex items-center gap-1 px-2 py-1 bg-green-500/10 text-green-600 rounded-lg"
                               whileHover={{ scale: 1.05 }}
                             >
                               <Eye className="w-4 h-4" />
-                              <span className="font-medium">{formatNumber(repo.watchers_count)}</span>
+                              <span className="font-medium">
+                                {formatNumber(repo.watchers_count)}
+                              </span>
                             </motion.div>
                           )}
                         </div>
 
                         {/* Topics */}
-                        {repo.topics && repo.topics.length > 0 && viewMode === 'grid' && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: index * 0.1 + 0.3 }}
-                            className="flex flex-wrap gap-2"
-                          >
-                            {repo.topics.slice(0, 3).map((topic) => (
-                              <motion.span
-                                key={topic}
-                                className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20 hover:bg-primary/20 transition-colors cursor-default"
-                                whileHover={{ scale: 1.05 }}
-                              >
-                                {topic}
-                              </motion.span>
-                            ))}
-                            {repo.topics.length > 3 && (
-                              <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full border border-border">
-                                +{repo.topics.length - 3}
-                              </span>
-                            )}
-                          </motion.div>
-                        )}
+                        {repo.topics &&
+                          repo.topics.length > 0 &&
+                          viewMode === 'grid' && (
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: index * 0.1 + 0.3 }}
+                              className="flex flex-wrap gap-2"
+                            >
+                              {repo.topics.slice(0, 3).map(topic => (
+                                <motion.span
+                                  key={topic}
+                                  className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20 hover:bg-primary/20 transition-colors cursor-default"
+                                  whileHover={{ scale: 1.05 }}
+                                >
+                                  {topic}
+                                </motion.span>
+                              ))}
+                              {repo.topics.length > 3 && (
+                                <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full border border-border">
+                                  +{repo.topics.length - 3}
+                                </span>
+                              )}
+                            </motion.div>
+                          )}
 
                         {/* Updated Date */}
                         <div className="text-xs text-muted-foreground flex items-center gap-1">
                           <Calendar className="w-3 h-3" />
-                          Updated {new Date(repo.updated_at).toLocaleDateString()}
+                          Updated{' '}
+                          {new Date(repo.updated_at).toLocaleDateString()}
                         </div>
                       </div>
                     </CardContent>
@@ -279,7 +322,9 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) 
                 >
                   {showAll ? '↑' : '↓'}
                 </motion.div>
-                {showAll ? 'Show Less' : `Show All ${repositories.length} Repositories`}
+                {showAll
+                  ? 'Show Less'
+                  : `Show All ${repositories.length} Repositories`}
               </Button>
             </motion.div>
           )}

@@ -12,18 +12,21 @@ interface HeroSectionProps {
   loading: boolean;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, loading }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({
+  onSearch,
+  loading,
+}) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <ParticleBackground />
-      
+
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80 dark:from-blue-950/40 dark:via-purple-950/40 dark:to-pink-950/40" />
-      
+
       <div className="relative z-10 container mx-auto px-4 text-center space-y-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="space-y-6"
         >
           <div className="space-y-4">
@@ -38,15 +41,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, loading }) =
                 gradient="from-blue-600 via-purple-600 to-pink-600"
               />
             </motion.div>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             >
-              Unlock the power of data-driven insights with beautiful visualizations,
-              comprehensive analytics, and deep-dive statistics for any GitHub developer.
+              Unlock the power of data-driven insights with beautiful
+              visualizations, comprehensive analytics, and deep-dive statistics
+              for any GitHub developer.
             </motion.p>
           </div>
 

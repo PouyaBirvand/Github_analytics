@@ -9,8 +9,16 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'GitHub Analytics - Analyze GitHub Profiles',
-  description: 'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
-  keywords: ['GitHub', 'Analytics', 'Developer', 'Statistics', 'Visualization', 'Profile'],
+  description:
+    'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
+  keywords: [
+    'GitHub',
+    'Analytics',
+    'Developer',
+    'Statistics',
+    'Visualization',
+    'Profile',
+  ],
   authors: [{ name: 'GitHub Analytics' }],
   creator: 'GitHub Analytics',
   publisher: 'GitHub Analytics',
@@ -19,17 +27,19 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://github-analytics.vercel.app',
     title: 'GitHub Analytics - Analyze GitHub Profiles',
-    description: 'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
+    description:
+      'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
     siteName: 'GitHub Analytics',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'GitHub Analytics - Analyze GitHub Profiles',
-    description: 'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
+    description:
+      'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
     creator: '@Pouyaphernia',
   },
   icons: {
-    icon: "./github.ico"
+    icon: './github.ico',
   },
   robots: {
     index: true,

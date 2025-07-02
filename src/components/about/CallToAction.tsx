@@ -3,17 +3,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { BarChart3, ArrowRight, Sparkles, TrendingUp, Zap, Github } from 'lucide-react';
+import {
+  BarChart3,
+  ArrowRight,
+  Sparkles,
+  TrendingUp,
+  Zap,
+  Github,
+} from 'lucide-react';
 import { ParticleBackground } from '@/components/ui/ParticleBackground';
 
 export const CallToAction: React.FC = () => {
   return (
     <section className="relative py-24 px-4 overflow-hidden">
       <ParticleBackground />
-      
+
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600" />
       <div className="absolute inset-0 bg-black/20" />
-      
+
       {/* Animated background elements */}
       <div className="absolute inset-0">
         {[...Array(25)].map((_, i) => (
@@ -56,9 +63,9 @@ export const CallToAction: React.FC = () => {
           >
             <motion.div
               animate={{ rotate: 360, y: [-10, 10, -10] }}
-              transition={{ 
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              transition={{
+                rotate: { duration: 20, repeat: Infinity, ease: 'linear' },
+                y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
               }}
               className="p-4 bg-white/10 rounded-full backdrop-blur-sm"
             >
@@ -66,9 +73,9 @@ export const CallToAction: React.FC = () => {
             </motion.div>
             <motion.div
               animate={{ rotate: -360, y: [10, -10, 10] }}
-              transition={{ 
-                rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-                y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              transition={{
+                rotate: { duration: 25, repeat: Infinity, ease: 'linear' },
+                y: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
               }}
               className="p-4 bg-white/10 rounded-full backdrop-blur-sm"
             >
@@ -76,9 +83,9 @@ export const CallToAction: React.FC = () => {
             </motion.div>
             <motion.div
               animate={{ rotate: 360, y: [-5, 15, -5] }}
-              transition={{ 
-                rotate: { duration: 30, repeat: Infinity, ease: "linear" },
-                y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+              transition={{
+                rotate: { duration: 30, repeat: Infinity, ease: 'linear' },
+                y: { duration: 5, repeat: Infinity, ease: 'easeInOut' },
               }}
               className="p-4 bg-white/10 rounded-full backdrop-blur-sm"
             >
@@ -101,7 +108,7 @@ export const CallToAction: React.FC = () => {
                 GitHub Journey?
               </span>
             </motion.h2>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -109,8 +116,9 @@ export const CallToAction: React.FC = () => {
               viewport={{ once: true }}
               className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed"
             >
-              Join thousands of developers who've discovered their coding potential through our 
-              comprehensive GitHub analytics platform. Start your journey today!
+              Join thousands of developers who've discovered their coding
+              potential through our comprehensive GitHub analytics platform.
+              Start your journey today!
             </motion.p>
           </div>
 
@@ -136,7 +144,7 @@ export const CallToAction: React.FC = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </motion.div>
-            
+
             <motion.div
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}

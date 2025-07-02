@@ -4,19 +4,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SearchForm } from '@/components/search/SearchForm';
 import { Sparkles, TrendingUp, Zap } from 'lucide-react';
-import { DOT_POSITIONS  } from '@/lib/constants/dots';
+import { DOT_POSITIONS } from '@/lib/constants/dots';
 
 interface CTASectionProps {
   onSearch: (username: string) => void;
   loading: boolean;
 }
 
-export const CTASection: React.FC<CTASectionProps> = ({ onSearch, loading }) => {
+export const CTASection: React.FC<CTASectionProps> = ({
+  onSearch,
+  loading,
+}) => {
   return (
     <section className="relative py-24 px-4 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600" />
       <div className="absolute inset-0 bg-black/20" />
-      
+
       {/* Animated background elements */}
       <div className="absolute inset-0">
         {DOT_POSITIONS.map((dot, i) => (
@@ -68,9 +71,10 @@ export const CTASection: React.FC<CTASectionProps> = ({ onSearch, loading }) => 
                 Coding Potential?
               </span>
             </h2>
-            
+
             <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed">
-              Join thousands of developers who've discovered their coding journey through our advanced analytics platform
+              Join thousands of developers who've discovered their coding
+              journey through our advanced analytics platform
             </p>
           </div>
 

@@ -8,7 +8,9 @@ interface PopularDevelopersProps {
   onSearch: (username: string) => void;
 }
 
-export const PopularDevelopers: React.FC<PopularDevelopersProps> = ({ onSearch }) => {
+export const PopularDevelopers: React.FC<PopularDevelopersProps> = ({
+  onSearch,
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

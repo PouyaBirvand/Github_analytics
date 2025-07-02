@@ -20,7 +20,8 @@ export const FeaturesSection: React.FC = () => {
             Powerful Analytics Features
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Transform raw GitHub data into actionable insights with our comprehensive suite of analytical tools
+            Transform raw GitHub data into actionable insights with our
+            comprehensive suite of analytical tools
           </p>
         </motion.div>
 

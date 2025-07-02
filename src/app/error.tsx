@@ -21,7 +21,8 @@ export default function Error({ error, reset }: ErrorProps) {
           </div>
           <h1 className="text-2xl font-bold">Something went wrong!</h1>
           <p className="text-muted-foreground">
-            We encountered an error while loading the GitHub data. This might be due to:
+            We encountered an error while loading the GitHub data. This might be
+            due to:
           </p>
         </div>
 
@@ -53,7 +54,9 @@ export default function Error({ error, reset }: ErrorProps) {
         {process.env.NODE_ENV === 'development' && (
           <Card className="card-elevated">
             <CardHeader>
-              <CardTitle className="text-lg text-destructive">Error Details</CardTitle>
+              <CardTitle className="text-lg text-destructive">
+                Error Details
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <pre className="text-xs text-left overflow-auto p-4 bg-muted rounded">

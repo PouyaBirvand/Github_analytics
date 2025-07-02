@@ -28,15 +28,12 @@ export const Header: React.FC = () => {
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="container mx-auto px-4">
           <div className="flex h-20 items-center justify-between">
             {/* Logo Section */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href="/" className="flex items-center gap-3 group">
                 <div className="relative">
                   <motion.div
@@ -48,7 +45,7 @@ export const Header: React.FC = () => {
                     transition={{
                       duration: 4,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: 'easeInOut',
                     }}
                   />
                   <div className="relative p-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl">
@@ -108,7 +105,7 @@ export const Header: React.FC = () => {
                   </Link>
                 </motion.div>
               ))}
-              
+
               <motion.a
                 href="https://github.com"
                 target="_blank"
@@ -128,7 +125,7 @@ export const Header: React.FC = () => {
             {/* Right Section */}
             <div className="flex items-center gap-4">
               <ThemeToggle />
-              
+
               {/* Mobile Menu Button */}
               <motion.button
                 className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors"
@@ -199,12 +196,14 @@ export const Header: React.FC = () => {
                       className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors group"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      {item.icon && <item.icon className="w-5 h-5 text-primary" />}
+                      {item.icon && (
+                        <item.icon className="w-5 h-5 text-primary" />
+                      )}
                       <span className="font-medium">{item.label}</span>
                     </Link>
                   </motion.div>
                 ))}
-                
+
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}

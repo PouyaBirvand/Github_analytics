@@ -12,7 +12,8 @@ export default function NotFound() {
           <div className="text-6xl font-bold text-muted-foreground">404</div>
           <h1 className="text-2xl font-bold">Page Not Found</h1>
           <p className="text-muted-foreground">
-            The page you're looking for doesn't exist or the GitHub user couldn't be found.
+            The page you're looking for doesn't exist or the GitHub user
+            couldn't be found.
           </p>
         </div>
 

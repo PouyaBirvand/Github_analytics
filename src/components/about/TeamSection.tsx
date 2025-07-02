@@ -17,11 +17,10 @@ export const TeamSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Meet Our Team
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Meet Our Team</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Passionate developers and designers working together to create the best GitHub analytics experience
+            Passionate developers and designers working together to create the
+            best GitHub analytics experience
           </p>
         </motion.div>
 
@@ -44,7 +43,10 @@ export const TeamSection: React.FC = () => {
                     <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-500 p-1">
                       <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
                         <span className="text-2xl font-bold text-primary">
-                          {member.name.split(' ').map(n => n[0]).join('')}
+                          {member.name
+                            .split(' ')
+                            .map(n => n[0])
+                            .join('')}
                         </span>
                       </div>
                     </div>

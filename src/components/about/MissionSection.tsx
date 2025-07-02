@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { missions } from '@/lib/constants/missions';
 
 export const MissionSection: React.FC = () => {
-
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto">
@@ -24,8 +23,9 @@ export const MissionSection: React.FC = () => {
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We believe that understanding your coding journey is essential for growth as a developer. 
-            Our platform bridges the gap between raw data and actionable intelligence.
+            We believe that understanding your coding journey is essential for
+            growth as a developer. Our platform bridges the gap between raw data
+            and actionable intelligence.
           </p>
         </motion.div>
 

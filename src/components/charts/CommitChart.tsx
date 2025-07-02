@@ -1,7 +1,15 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import {
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Area,
+  AreaChart,
+} from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CommitActivity } from '@/types/github';
 import { GitCommit, TrendingUp, Calendar, Activity } from 'lucide-react';
@@ -13,23 +21,21 @@ interface CommitChartProps {
 
 export const CommitChart: React.FC<CommitChartProps> = ({
   data,
-  title = "Commit Activity"
+  title = 'Commit Activity',
 }) => {
-  const processedData = data
-    .slice(-30)
-    .map(item => ({
-      ...item,
-      date: new Date(item.date).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric'
-      }),
-      fullDate: new Date(item.date).toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
-    }));
+  const processedData = data.slice(-30).map(item => ({
+    ...item,
+    date: new Date(item.date).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+    }),
+    fullDate: new Date(item.date).toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
+  }));
 
   const totalCommits = processedData.reduce((sum, item) => sum + item.count, 0);
   const avgCommits = (totalCommits / processedData.length).toFixed(1);
@@ -73,7 +79,7 @@ export const CommitChart: React.FC<CommitChartProps> = ({
                 transition={{ duration: 0.3 }}
               >
                 <GitCommit className="w-6 h-6 text-white" />
-                </motion.div>
+              </motion.div>
               <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                 {title}
               </span>
@@ -113,39 +119,48 @@ export const CommitChart: React.FC<CommitChartProps> = ({
             className="h-80"
           >
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={processedData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <AreaChart
+                data={processedData}
+                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
                 <defs>
-                  <linearGradient id="commitGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                  <linearGradient
+                    id="commitGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1} />
                   </linearGradient>
                   <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#10b981" />
                     <stop offset="100%" stopColor="#3b82f6" />
                   </linearGradient>
                 </defs>
-                
-                <CartesianGrid 
-                  strokeDasharray="3 3" 
-                  className="opacity-20" 
+
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  className="opacity-20"
                   stroke="hsl(var(--muted-foreground))"
                 />
-                
+
                 <XAxis
                   dataKey="date"
                   tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
                   tickLine={false}
                   axisLine={false}
                 />
-                
+
                 <YAxis
                   tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
                   tickLine={false}
                   axisLine={false}
                 />
-                
+
                 <Tooltip content={<CustomTooltip />} />
-                
+
                 <Area
                   type="monotone"
                   dataKey="count"
@@ -153,11 +168,11 @@ export const CommitChart: React.FC<CommitChartProps> = ({
                   strokeWidth={3}
                   fill="url(#commitGradient)"
                   dot={{ fill: 'url(#lineGradient)', strokeWidth: 2, r: 4 }}
-                  activeDot={{ 
-                    r: 6, 
-                    stroke: 'url(#lineGradient)', 
+                  activeDot={{
+                    r: 6,
+                    stroke: 'url(#lineGradient)',
                     strokeWidth: 2,
-                    fill: 'hsl(var(--background))'
+                    fill: 'hsl(var(--background))',
                   }}
                 />
               </AreaChart>

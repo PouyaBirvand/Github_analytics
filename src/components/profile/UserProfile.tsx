@@ -5,7 +5,17 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { GitHubUser } from '@/types/github';
 import { formatNumber, formatDate } from '@/lib/utils';
-import { MapPin, Calendar, Link as LinkIcon, Mail, Building, Github, Users, BookOpen, Star } from 'lucide-react';
+import {
+  MapPin,
+  Calendar,
+  Link as LinkIcon,
+  Mail,
+  Building,
+  Github,
+  Users,
+  BookOpen,
+  Star,
+} from 'lucide-react';
 import Link from 'next/link';
 
 interface UserProfileProps {
@@ -18,26 +28,26 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
       icon: BookOpen,
       label: 'Repositories',
       value: formatNumber(user.public_repos),
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Users,
       label: 'Followers',
       value: formatNumber(user.followers),
-      gradient: 'from-green-500 to-emerald-500'
+      gradient: 'from-green-500 to-emerald-500',
     },
     {
       icon: Star,
       label: 'Following',
       value: formatNumber(user.following),
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: Github,
       label: 'Gists',
       value: formatNumber(user.public_gists),
-      gradient: 'from-orange-500 to-red-500'
-    }
+      gradient: 'from-orange-500 to-red-500',
+    },
   ];
 
   return (
@@ -57,10 +67,10 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               background: [
                 'linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)',
                 'linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)',
-                'linear-gradient(45deg, #ec4899, #3b82f6, #8b5cf6)'
-              ]
+                'linear-gradient(45deg, #ec4899, #3b82f6, #8b5cf6)',
+              ],
             }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
           />
         </div>
 
@@ -99,7 +109,9 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 <h1 className="text-3xl lg:text-4xl mb-5 font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                   {user.name || user.login}
                 </h1>
-                <p className="text-lg text-muted-foreground mt-1">@{user.login}</p>
+                <p className="text-lg text-muted-foreground mt-1">
+                  @{user.login}
+                </p>
                 {user.bio && (
                   <p className="mt-4 text-muted-foreground leading-relaxed max-w-2xl">
                     {user.bio}
@@ -175,7 +187,11 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                   >
                     <LinkIcon className="w-4 h-4" />
                     <Link
-                      href={user.blog.startsWith('http') ? user.blog : `https://${user.blog}`}
+                      href={
+                        user.blog.startsWith('http')
+                          ? user.blog
+                          : `https://${user.blog}`
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-primary transition-colors"

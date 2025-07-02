@@ -9,7 +9,7 @@ export async function GET(
     const { username } = params;
     const { searchParams } = new URL(request.url);
     const per_page = parseInt(searchParams.get('per_page') || '100');
-    
+
     if (!username) {
       return NextResponse.json(
         { error: 'Username is required' },
@@ -18,7 +18,10 @@ export async function GET(
     }
 
     const githubService = new GitHubService();
-    const repositories = await githubService.getUserRepositories(username, per_page);
+    const repositories = await githubService.getUserRepositories(
+      username,
+      per_page
+    );
 
     return NextResponse.json(repositories, {
       headers: {

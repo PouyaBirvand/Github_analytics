@@ -19,7 +19,8 @@ export const TechnologyStack: React.FC = () => {
             Built With Modern Technology
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Leveraging cutting-edge technologies to deliver fast, reliable, and beautiful analytics
+            Leveraging cutting-edge technologies to deliver fast, reliable, and
+            beautiful analytics
           </p>
         </motion.div>
 
@@ -31,7 +32,7 @@ export const TechnologyStack: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {techStackData.map((tech, index) => {
                 const IconComponent = tech.icon;
-                
+
                 return (
                   <motion.div
                     key={tech.name}
@@ -76,23 +77,43 @@ export const TechnologyStack: React.FC = () => {
               viewport={{ once: true }}
               className="mt-12 p-6 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-2xl border border-border/50"
             >
-              <h4 className="font-bold text-lg mb-4 text-center">Why These Technologies?</h4>
+              <h4 className="font-bold text-lg mb-4 text-center">
+                Why These Technologies?
+              </h4>
               <div className="grid md:grid-cols-2 gap-6 text-sm text-muted-foreground">
                 <div className="space-y-2">
-                  <h5 className="font-semibold text-foreground">Performance & Speed</h5>
-                  <p>Next.js 15 with App Router provides lightning-fast page loads and optimal SEO performance.</p>
+                  <h5 className="font-semibold text-foreground">
+                    Performance & Speed
+                  </h5>
+                  <p>
+                    Next.js 15 with App Router provides lightning-fast page
+                    loads and optimal SEO performance.
+                  </p>
                 </div>
                 <div className="space-y-2">
-                  <h5 className="font-semibold text-foreground">Developer Experience</h5>
-                  <p>TypeScript ensures type safety while Tailwind CSS enables rapid UI development.</p>
+                  <h5 className="font-semibold text-foreground">
+                    Developer Experience
+                  </h5>
+                  <p>
+                    TypeScript ensures type safety while Tailwind CSS enables
+                    rapid UI development.
+                  </p>
                 </div>
                 <div className="space-y-2">
-                  <h5 className="font-semibold text-foreground">User Experience</h5>
-                  <p>Framer Motion creates smooth animations and Recharts provides interactive visualizations.</p>
+                  <h5 className="font-semibold text-foreground">
+                    User Experience
+                  </h5>
+                  <p>
+                    Framer Motion creates smooth animations and Recharts
+                    provides interactive visualizations.
+                  </p>
                 </div>
                 <div className="space-y-2">
                   <h5 className="font-semibold text-foreground">Scalability</h5>
-                  <p>Modern architecture ensures the platform can grow with our user base and feature set.</p>
+                  <p>
+                    Modern architecture ensures the platform can grow with our
+                    user base and feature set.
+                  </p>
                 </div>
               </div>
             </motion.div>

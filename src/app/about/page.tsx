@@ -10,11 +10,18 @@ import { CallToAction } from '@/components/about/CallToAction';
 
 export const metadata: Metadata = {
   title: 'About - GitHub Analytics',
-  description: 'Learn more about GitHub Analytics and how we help developers analyze their GitHub profiles with beautiful visualizations.',
-  keywords: ['GitHub Analytics', 'Developer Tools', 'Code Analysis', 'Open Source'],
+  description:
+    'Learn more about GitHub Analytics and how we help developers analyze their GitHub profiles with beautiful visualizations.',
+  keywords: [
+    'GitHub Analytics',
+    'Developer Tools',
+    'Code Analysis',
+    'Open Source',
+  ],
   openGraph: {
     title: 'About GitHub Analytics',
-    description: 'Discover how we transform GitHub data into meaningful insights for developers worldwide.',
+    description:
+      'Discover how we transform GitHub data into meaningful insights for developers worldwide.',
     type: 'website',
   },
 };

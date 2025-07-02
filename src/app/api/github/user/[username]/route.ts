@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const { username } = params;
-    
+
     if (!username) {
       return NextResponse.json(
         { error: 'Username is required' },

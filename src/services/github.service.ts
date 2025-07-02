@@ -1,5 +1,11 @@
 import { Octokit } from '@octokit/rest';
-import { GitHubUser, Repository, LanguageStats, CommitActivity, SkillAnalysis } from '@/types/github';
+import {
+  GitHubUser,
+  Repository,
+  LanguageStats,
+  CommitActivity,
+  SkillAnalysis,
+} from '@/types/github';
 
 export class GitHubService {
   private octokit: Octokit;
@@ -21,7 +27,10 @@ export class GitHubService {
     }
   }
 
-  async getUserRepositories(username: string, per_page = 100): Promise<Repository[]> {
+  async getUserRepositories(
+    username: string,
+    per_page = 100
+  ): Promise<Repository[]> {
     try {
       const { data } = await this.octokit.rest.repos.listForUser({
         username,
@@ -41,14 +50,18 @@ export class GitHubService {
 
     for (const repo of repositories) {
       if (repo.language) {
-        languageStats[repo.language] = (languageStats[repo.language] || 0) + repo.size;
+        languageStats[repo.language] =
+          (languageStats[repo.language] || 0) + repo.size;
       }
     }
 
     return languageStats;
   }
 
-  async getCommitActivity(username: string, repo: string): Promise<CommitActivity[]> {
+  async getCommitActivity(
+    username: string,
+    repo: string
+  ): Promise<CommitActivity[]> {
     try {
       const { data } = await this.octokit.rest.repos.getCommitActivityStats({
         owner: username,
@@ -57,7 +70,7 @@ export class GitHubService {
 
       if (!data) return [];
 
-      return data.map((week) => ({
+      return data.map(week => ({
         date: new Date(week.week * 1000).toISOString().split('T')[0],
         count: week.total,
       }));
@@ -75,7 +88,7 @@ export class GitHubService {
 
     // Extract frameworks and technologies from repository topics and names
     const frameworks = this.extractFrameworks(repositories);
-    
+
     // Calculate commit statistics
     const totalCommits = await this.getTotalCommits(username, repositories);
     const accountAge = Math.floor(
@@ -95,9 +108,26 @@ export class GitHubService {
 
   private extractFrameworks(repositories: Repository[]): string[] {
     const frameworkKeywords = [
-      'react', 'vue', 'angular', 'svelte', 'next', 'nuxt', 'gatsby',
-      'express', 'fastify', 'koa', 'django', 'flask', 'rails', 'laravel',
-      'spring', 'dotnet', 'gin', 'fiber', 'actix', 'rocket'
+      'react',
+      'vue',
+      'angular',
+      'svelte',
+      'next',
+      'nuxt',
+      'gatsby',
+      'express',
+      'fastify',
+      'koa',
+      'django',
+      'flask',
+      'rails',
+      'laravel',
+      'spring',
+      'dotnet',
+      'gin',
+      'fiber',
+      'actix',
+      'rocket',
     ];
 
     const frameworks = new Set<string>();
@@ -122,12 +152,15 @@ export class GitHubService {
     return Array.from(frameworks);
   }
 
-  private async getTotalCommits(username: string, repositories: Repository[]): Promise<number> {
+  private async getTotalCommits(
+    username: string,
+    repositories: Repository[]
+  ): Promise<number> {
     let totalCommits = 0;
-    
+
     // Sample a few repositories to estimate total commits
     const sampleRepos = repositories.slice(0, 5);
-    
+
     for (const repo of sampleRepos) {
       try {
         const { data } = await this.octokit.rest.repos.listCommits({
@@ -136,7 +169,7 @@ export class GitHubService {
           author: username,
           per_page: 1,
         });
-        
+
         // This is a simplified estimation
         totalCommits += Math.floor(Math.random() * 100) + 10;
       } catch (error) {
@@ -144,7 +177,7 @@ export class GitHubService {
         continue;
       }
     }
-    
+
     return totalCommits;
   }
 
@@ -158,7 +191,7 @@ export class GitHubService {
     for (let i = 0; i < 365; i++) {
       const date = new Date(startDate);
       date.setDate(date.getDate() + i);
-      
+
       calendar.push({
         date: date.toISOString().split('T')[0],
         count: Math.floor(Math.random() * 10),

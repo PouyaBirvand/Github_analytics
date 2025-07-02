@@ -16,12 +16,10 @@ export const FeaturesGrid: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            What We Offer
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">What We Offer</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive tools and insights designed to help developers understand 
-            and showcase their GitHub journey
+            Comprehensive tools and insights designed to help developers
+            understand and showcase their GitHub journey
           </p>
         </motion.div>
 

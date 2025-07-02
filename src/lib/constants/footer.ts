@@ -5,25 +5,25 @@ export const footerData = {
     {
       name: 'GitHub',
       url: 'https://github.com',
-      icon: Github
+      icon: Github,
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com',
-      icon: Twitter
+      icon: Twitter,
     },
     {
       name: 'LinkedIn',
       url: 'https://linkedin.com',
-      icon: Linkedin
+      icon: Linkedin,
     },
     {
       name: 'Email',
       url: 'mailto:contact@githubanalytics.com',
-      icon: Mail
-    }
+      icon: Mail,
+    },
   ],
-  
+
   features: [
     'Language Statistics',
     'Commit Activity Analysis',
@@ -32,25 +32,25 @@ export const footerData = {
     'Profile Comparisons',
     'Trend Visualization',
     'Export Reports',
-    'Real-time Data'
+    'Real-time Data',
   ],
-  
+
   quickLinks: [
     {
       label: 'Home',
       href: '/',
-      icon: Home
+      icon: Home,
     },
     {
       label: 'About',
       href: '/about',
-      icon: Info
+      icon: Info,
     },
     {
       label: 'GitHub',
       href: 'https://github.com',
       icon: Github,
-      external: true
-    }
-  ]
+      external: true,
+    },
+  ],
 };

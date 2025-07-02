@@ -13,8 +13,6 @@ export const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-
-
   return (
     <footer className="relative border-t bg-gradient-to-br from-background via-muted/20 to-background overflow-hidden">
       {/* Background Pattern */}
@@ -61,11 +59,11 @@ export const Footer: React.FC = () => {
                   GitHub Analytics
                 </h3>
               </div>
-              
+
               <p className="text-muted-foreground leading-relaxed max-w-md">
-                Transform your GitHub data into beautiful, actionable insights. 
-                Discover patterns, track progress, and showcase your coding journey 
-                with our advanced analytics platform.
+                Transform your GitHub data into beautiful, actionable insights.
+                Discover patterns, track progress, and showcase your coding
+                journey with our advanced analytics platform.
               </p>
 
               {/* Social Links */}
@@ -124,7 +122,9 @@ export const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="font-bold text-lg mb-6 text-foreground">Quick Links</h3>
+            <h3 className="font-bold text-lg mb-6 text-foreground">
+              Quick Links
+            </h3>
             <ul className="space-y-3">
               {footerData.quickLinks.map((link, index) => (
                 <motion.li
@@ -138,7 +138,9 @@ export const Footer: React.FC = () => {
                     href={link.href}
                     className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-2 group"
                   >
-                    {link.icon && <link.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />}
+                    {link.icon && (
+                      <link.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                    )}
                     {link.label}
                   </Link>
                 </motion.li>
@@ -148,7 +150,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Newsletter Section */}
-        <NewsletterForm/>
+        <NewsletterForm />
         {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -160,7 +162,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                Made with 
+                Made with
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
@@ -173,10 +175,16 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <Link href="/privacy" className="hover:text-primary transition-colors">
+                <Link
+                  href="/privacy"
+                  className="hover:text-primary transition-colors"
+                >
                   Privacy
                 </Link>
-                <Link href="/terms" className="hover:text-primary transition-colors">
+                <Link
+                  href="/terms"
+                  className="hover:text-primary transition-colors"
+                >
                   Terms
                 </Link>
                 <span>© 2024 GitHub Analytics</span>

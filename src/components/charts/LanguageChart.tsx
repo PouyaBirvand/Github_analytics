@@ -17,7 +17,7 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
       name,
       value,
       color: getLanguageColor(name),
-      percentage: 0
+      percentage: 0,
     }))
     .sort((a, b) => b.value - a.value)
     .slice(0, 8);
@@ -25,7 +25,7 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   const dataWithPercentage = data.map(item => ({
     ...item,
-    percentage: ((item.value / total) * 100)
+    percentage: (item.value / total) * 100,
   }));
 
   const CustomTooltip = ({ active, payload }: any) => {
@@ -34,8 +34,8 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
       return (
         <div className="bg-background/95 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg">
           <div className="flex items-center gap-2 mb-1">
-            <div 
-              className="w-3 h-3 rounded-full" 
+            <div
+              className="w-3 h-3 rounded-full"
               style={{ backgroundColor: data.color }}
             />
             <span className="font-medium">{data.name}</span>
@@ -102,8 +102,8 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
                       dataKey="value"
                     >
                       {dataWithPercentage.map((entry, index) => (
-                        <Cell 
-                          key={`cell-${index}`} 
+                        <Cell
+                          key={`cell-${index}`}
                           fill={entry.color}
                           stroke="hsl(var(--background))"
                           strokeWidth={2}
@@ -113,7 +113,7 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
                     <Tooltip content={<CustomTooltip />} />
                   </PieChart>
                 </ResponsiveContainer>
-                
+
                 {/* Center decoration */}
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -170,7 +170,7 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
                         </span>
                       </div>
                     </div>
-                    
+
                     {/* Progress bar */}
                     <motion.div
                       className="mt-2 h-1 bg-muted/50 rounded-full overflow-hidden"
@@ -183,7 +183,11 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
                         style={{ backgroundColor: lang.color }}
                         initial={{ width: 0 }}
                         animate={{ width: `${lang.percentage}%` }}
-                        transition={{ delay: 0.8 + index * 0.1, duration: 1, ease: "easeOut" }}
+                        transition={{
+                          delay: 0.8 + index * 0.1,
+                          duration: 1,
+                          ease: 'easeOut',
+                        }}
                       />
                     </motion.div>
                   </motion.div>
@@ -204,11 +208,17 @@ export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-muted-foreground">Most Used:</span>
-                    <p className="font-medium text-primary">{dataWithPercentage[0]?.name}</p>
+                    <p className="font-medium text-primary">
+                      {dataWithPercentage[0]?.name}
+                    </p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">Total Languages:</span>
-                    <p className="font-medium text-primary">{dataWithPercentage.length}</p>
+                    <span className="text-muted-foreground">
+                      Total Languages:
+                    </span>
+                    <p className="font-medium text-primary">
+                      {dataWithPercentage.length}
+                    </p>
                   </div>
                 </div>
               </motion.div>
