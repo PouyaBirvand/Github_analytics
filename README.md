@@ -173,8 +173,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-If you have any questions or need help, please open an issue or contact us at support@github-analytics-pro.com
+If you have any questions or need help, please open an issue or contact us at support@github-analytics-pro.com (fake)
 
 ---
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by [Your Name](https://github.com/Pouyabirvand)
