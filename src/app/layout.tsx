@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://github-analytics.vercel.app',
+    url: 'https://github-analytics-five.vercel.app/',
     title: 'GitHub Analytics - Analyze GitHub Profiles',
     description:
       'Analyze GitHub profiles with beautiful visualizations, language statistics, commit patterns, and repository insights.',
