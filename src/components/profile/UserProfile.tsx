@@ -1,10 +1,11 @@
 'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { GitHubUser } from '@/types/github';
 import { formatNumber, formatDate } from '@/lib/utils';
+import { UserProfileProps } from '@/types/user-profile.types';
 import {
   MapPin,
   Calendar,
@@ -17,10 +18,6 @@ import {
   Star,
 } from 'lucide-react';
 import Link from 'next/link';
-
-interface UserProfileProps {
-  user: GitHubUser;
-}
 
 export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const stats = [
@@ -58,7 +55,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
     >
       <Card className="overflow-hidden border-0 bg-gradient-to-br from-background to-muted/30 shadow-2xl">
         {/* Hero Background */}
-        <div className="relative h-40 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
+        <div className="relative h-24 sm:h-32 lg:h-40 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
           <motion.div
@@ -74,17 +71,17 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
           />
         </div>
 
-        <CardContent className="relative -mt-20 p-8">
-          <div className="flex flex-col lg:flex-row gap-8">
+        <CardContent className="relative -mt-12 sm:-mt-16 lg:-mt-20 p-4 sm:p-6 lg:p-8">
+          <div className="flex flex-col gap-6 sm:gap-8">
             {/* Avatar Section */}
             <motion.div
-              className="flex flex-col items-center lg:items-start"
+              className="flex flex-col items-center"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <div className="relative group">
-                <div className="w-32 h-32 rounded-full border-4 border-background overflow-hidden bg-background shadow-2xl">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full border-4 border-background overflow-hidden bg-background shadow-2xl">
                   <Image
                     src={user.avatar_url}
                     alt={user.name || user.login}
@@ -99,21 +96,21 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             </motion.div>
 
             {/* User Info Section */}
-            <div className="flex-1 space-y-6">
+            <div className="flex-1 space-y-4 sm:space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-center lg:text-left"
+                className="text-center"
               >
-                <h1 className="text-3xl lg:text-4xl mb-5 font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-5 font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                   {user.name || user.login}
                 </h1>
-                <p className="text-lg text-muted-foreground mt-1">
+                <p className="text-base sm:text-lg text-muted-foreground">
                   @{user.login}
                 </p>
                 {user.bio && (
-                  <p className="mt-4 text-muted-foreground leading-relaxed max-w-2xl">
+                  <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto px-2">
                     {user.bio}
                   </p>
                 )}
@@ -124,7 +121,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+                className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -134,16 +131,16 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                     className="group"
                   >
-                    <Card className="text-center p-4 hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-background to-muted/20">
+                    <Card className="text-center p-3 sm:p-4 hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-background to-muted/20">
                       <CardContent className="p-0 space-y-2">
                         <motion.div
-                          className={`w-12 h-12 mx-auto rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center shadow-lg`}
+                          className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 mx-auto rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center shadow-lg`}
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <stat.icon className="w-6 h-6 text-white" />
+                          <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
                         </motion.div>
-                        <div className="text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+                        <div className="text-lg sm:text-xl lg:text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
                           {stat.value}
                         </div>
                         <div className="text-xs text-muted-foreground font-medium">
@@ -160,32 +157,36 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="flex flex-wrap gap-4 text-sm text-muted-foreground"
+                className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-muted-foreground"
               >
                 {user.company && (
                   <motion.div
-                    className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                    className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <Building className="w-4 h-4" />
-                    <span>{user.company}</span>
+                    <Building className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="truncate max-w-[120px] sm:max-w-none">
+                      {user.company}
+                    </span>
                   </motion.div>
                 )}
                 {user.location && (
                   <motion.div
-                    className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                    className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <MapPin className="w-4 h-4" />
-                    <span>{user.location}</span>
+                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="truncate max-w-[120px] sm:max-w-none">
+                      {user.location}
+                    </span>
                   </motion.div>
                 )}
                 {user.blog && (
                   <motion.div
-                    className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                    className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <LinkIcon className="w-4 h-4" />
+                    <LinkIcon className="w-3 h-3 sm:w-4 sm:h-4" />
                     <Link
                       href={
                         user.blog.startsWith('http')
@@ -194,7 +195,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-primary transition-colors"
+                      className="hover:text-primary transition-colors truncate max-w-[120px] sm:max-w-none"
                     >
                       {user.blog}
                     </Link>
@@ -202,18 +203,20 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 )}
                 {user.email && (
                   <motion.div
-                    className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                    className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <Mail className="w-4 h-4" />
-                    <span>{user.email}</span>
+                    <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="truncate max-w-[120px] sm:max-w-none">
+                      {user.email}
+                    </span>
                   </motion.div>
                 )}
                 <motion.div
-                  className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                  className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>Joined {formatDate(user.created_at)}</span>
                 </motion.div>
               </motion.div>

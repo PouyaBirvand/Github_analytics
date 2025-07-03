@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -21,7 +20,7 @@ export const Footer: React.FC = () => {
         {DOT_POSITIONS.map((dot, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-primary/20 rounded-full"
+            className="absolute w-0.5 h-0.5 sm:w-1 sm:h-1 bg-primary/20 rounded-full"
             style={{
               left: `${dot.left}%`,
               top: `${dot.top}%`,
@@ -39,42 +38,42 @@ export const Footer: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative z-10 container py-16">
+      <div className="relative z-10 container px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-12">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-2"
+            className="sm:col-span-2 lg:col-span-2"
           >
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
-                  <Github className="w-6 h-6 text-white" />
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-1.5 sm:p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
+                  <Github className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   GitHub Analytics
                 </h3>
               </div>
 
-              <p className="text-muted-foreground leading-relaxed max-w-md">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-sm sm:max-w-md">
                 Transform your GitHub data into beautiful, actionable insights.
                 Discover patterns, track progress, and showcase your coding
                 journey with our advanced analytics platform.
               </p>
 
               {/* Social Links */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 {footerData.socialLinks.map((social, index) => (
                   <motion.a
                     key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-muted/50 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
+                    className="p-1.5 sm:p-2 rounded-lg bg-muted/50 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
@@ -82,7 +81,7 @@ export const Footer: React.FC = () => {
                     transition={{ delay: index * 0.1 + 0.3 }}
                     viewport={{ once: true }}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="sr-only">{social.name}</span>
                   </motion.a>
                 ))}
@@ -96,9 +95,12 @@ export const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="space-y-4 sm:space-y-6"
           >
-            <h3 className="font-bold text-lg mb-6 text-foreground">Features</h3>
-            <ul className="space-y-3">
+            <h3 className="font-bold text-base sm:text-lg text-foreground">
+              Features
+            </h3>
+            <ul className="space-y-2 sm:space-y-3">
               {footerData.features.map((feature, index) => (
                 <motion.li
                   key={feature}
@@ -107,7 +109,7 @@ export const Footer: React.FC = () => {
                   transition={{ delay: index * 0.1 + 0.4 }}
                   viewport={{ once: true }}
                 >
-                  <span className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                     {feature}
                   </span>
                 </motion.li>
@@ -121,11 +123,12 @@ export const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
+            className="space-y-4 sm:space-y-6"
           >
-            <h3 className="font-bold text-lg mb-6 text-foreground">
+            <h3 className="font-bold text-base sm:text-lg text-foreground">
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
               {footerData.quickLinks.map((link, index) => (
                 <motion.li
                   key={link.label}
@@ -136,10 +139,10 @@ export const Footer: React.FC = () => {
                 >
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-2 group"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                   >
                     {link.icon && (
-                      <link.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      <link.icon className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
                     )}
                     {link.label}
                   </Link>
@@ -150,31 +153,39 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Newsletter Section */}
-        <NewsletterForm />
+        <div className="mb-8 sm:mb-12">
+          <NewsletterForm />
+        </div>
+
         {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
-          className="pt-8 border-t border-border/50"
+          className="pt-6 sm:pt-8 border-t border-border/50"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
+            {/* Made with love section */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
               <div className="flex items-center gap-2">
-                Made with
+                <span>Made with</span>
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 >
-                  <Heart className="w-4 h-4 text-red-500" />
+                  <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
                 </motion.div>
-                using Next.js & Tailwind CSS
+                <span className="hidden sm:inline">
+                  using Next.js & Tailwind CSS
+                </span>
+                <span className="sm:hidden">by developers</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            {/* Links and scroll to top */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
                 <Link
                   href="/privacy"
                   className="hover:text-primary transition-colors"
@@ -187,16 +198,23 @@ export const Footer: React.FC = () => {
                 >
                   Terms
                 </Link>
-                <span>© 2024 GitHub Analytics</span>
+                <span className="hidden sm:inline">
+                  © 2024 GitHub Analytics
+                </span>
+              </div>
+
+              {/* Copyright for mobile */}
+              <div className="sm:hidden text-xs text-muted-foreground">
+                © 2024 GitHub Analytics
               </div>
 
               <motion.button
                 onClick={scrollToTop}
-                className="p-2 rounded-lg bg-muted/50 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
+                className="p-1.5 sm:p-2 rounded-lg bg-muted/50 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowUp className="w-4 h-4" />
+                <ArrowUp className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="sr-only">Scroll to top</span>
               </motion.button>
             </div>

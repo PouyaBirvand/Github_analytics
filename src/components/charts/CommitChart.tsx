@@ -11,13 +11,8 @@ import {
   AreaChart,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CommitActivity } from '@/types/github';
 import { GitCommit, TrendingUp, Calendar, Activity } from 'lucide-react';
-
-interface CommitChartProps {
-  data: CommitActivity[];
-  title?: string;
-}
+import { CommitChartProps } from '@/types/commit-chart';
 
 export const CommitChart: React.FC<CommitChartProps> = ({
   data,
@@ -119,10 +114,7 @@ export const CommitChart: React.FC<CommitChartProps> = ({
             className="h-80"
           >
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart
-                data={processedData}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-              >
+              <AreaChart data={processedData} className="relative right-5">
                 <defs>
                   <linearGradient
                     id="commitGradient"

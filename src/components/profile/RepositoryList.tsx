@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Repository } from '@/types/github';
 import { formatNumber, getLanguageColor } from '@/lib/utils';
+import { RepositoryListProps } from '@/types/repository-list.types';
 import {
   Star,
   GitFork,
@@ -16,10 +16,6 @@ import {
   Grid,
   List,
 } from 'lucide-react';
-
-interface RepositoryListProps {
-  repositories: Repository[];
-}
 
 export const RepositoryList: React.FC<RepositoryListProps> = ({
   repositories,
@@ -88,7 +84,7 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex lg:flex-row flex-col lg:items-center gap-3">
               {/* View Mode Toggle */}
               <div className="flex items-center gap-1 p-1 bg-muted/30 rounded-lg">
                 <Button
@@ -110,7 +106,7 @@ export const RepositoryList: React.FC<RepositoryListProps> = ({
               </div>
 
               {/* Sort Options */}
-              <div className="flex items-center gap-1 p-1 bg-muted/30 rounded-lg">
+              <div className="flex items-center flex-wrap gap-1 p-1 bg-muted/30 rounded-lg">
                 <Filter className="w-4 h-4 text-muted-foreground ml-2" />
                 {sortOptions.map(option => (
                   <Button

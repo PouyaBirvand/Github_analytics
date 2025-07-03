@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Github, BarChart3, Menu, X, Sparkles } from 'lucide-react';
@@ -14,6 +13,7 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -30,14 +30,14 @@ export const Header: React.FC = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex h-20 items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 sm:h-20 items-center justify-between">
             {/* Logo Section */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/" className="flex items-center gap-3 group">
+              <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
                 <div className="relative">
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg sm:rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"
                     animate={{
                       scale: [1, 1.1, 1],
                       rotate: [0, 5, -5, 0],
@@ -48,10 +48,10 @@ export const Header: React.FC = () => {
                       ease: 'easeInOut',
                     }}
                   />
-                  <div className="relative p-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl">
-                    <BarChart3 className="w-7 h-7 text-white" />
+                  <div className="relative p-2 sm:p-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg sm:rounded-xl">
+                    <BarChart3 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
                     <motion.div
-                      className="absolute top-1 right-1"
+                      className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1"
                       animate={{
                         scale: [0, 1, 0],
                         opacity: [0, 1, 0],
@@ -62,15 +62,15 @@ export const Header: React.FC = () => {
                         delay: 1,
                       }}
                     >
-                      <Sparkles className="w-3 h-3 text-yellow-300" />
+                      <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-yellow-300" />
                     </motion.div>
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     GitHub Analytics
                   </span>
-                  <span className="text-xs text-muted-foreground font-medium">
+                  <span className="text-xs text-muted-foreground font-medium hidden sm:block">
                     Advanced Insights
                   </span>
                 </div>
@@ -81,7 +81,6 @@ export const Header: React.FC = () => {
             <nav className="hidden lg:flex items-center gap-8">
               {[
                 { href: '/', label: 'Home', icon: null },
-                // { href: '/analytics', label: 'Analytics', icon: TrendingUp },
                 { href: '/about', label: 'About', icon: null },
               ].map((item, index) => (
                 <motion.div
@@ -105,7 +104,6 @@ export const Header: React.FC = () => {
                   </Link>
                 </motion.div>
               ))}
-
               <motion.a
                 href="https://github.com"
                 target="_blank"
@@ -123,9 +121,8 @@ export const Header: React.FC = () => {
             </nav>
 
             {/* Right Section */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <ThemeToggle />
-
               {/* Mobile Menu Button */}
               <motion.button
                 className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors"
@@ -141,7 +138,7 @@ export const Header: React.FC = () => {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <X className="w-6 h-6" />
+                      <X className="w-5 h-5 sm:w-6 sm:h-6" />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -151,7 +148,7 @@ export const Header: React.FC = () => {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Menu className="w-6 h-6" />
+                      <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -173,16 +170,15 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
-              className="fixed top-20 right-4 z-50 w-72 bg-background/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl lg:hidden"
+              className="fixed top-16 sm:top-20 right-2 sm:right-4 z-50 w-64 sm:w-72 bg-background/95 backdrop-blur-xl border border-border/50 rounded-xl sm:rounded-2xl shadow-2xl lg:hidden"
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="p-6 space-y-4">
+              <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                 {[
                   { href: '/', label: 'Home', icon: null },
-                  // { href: '/analytics', label: 'Analytics', icon: TrendingUp },
                   { href: '/about', label: 'About', icon: null },
                 ].map((item, index) => (
                   <motion.div
@@ -199,16 +195,17 @@ export const Header: React.FC = () => {
                       {item.icon && (
                         <item.icon className="w-5 h-5 text-primary" />
                       )}
-                      <span className="font-medium">{item.label}</span>
+                      <span className="font-medium text-sm sm:text-base">
+                        {item.label}
+                      </span>
                     </Link>
                   </motion.div>
                 ))}
-
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="pt-4 border-t border-border/50"
+                  className="pt-3 sm:pt-4 border-t border-border/50"
                 >
                   <Link
                     href="https://github.com"
@@ -217,7 +214,7 @@ export const Header: React.FC = () => {
                     className="flex items-center gap-3 p-3 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 text-white dark:text-gray-900 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
                   >
                     <Github className="w-5 h-5" />
-                    GitHub
+                    <span className="text-sm sm:text-base">GitHub</span>
                   </Link>
                 </motion.div>
               </div>

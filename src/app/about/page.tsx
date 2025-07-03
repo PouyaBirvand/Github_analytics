@@ -9,20 +9,32 @@ import { TeamSection } from '@/components/about/TeamSection';
 import { CallToAction } from '@/components/about/CallToAction';
 
 export const metadata: Metadata = {
-  title: 'About - GitHub Analytics',
+  title: 'About Us - GitHub Analytics | Learn About Our Mission & Team',
   description:
-    'Learn more about GitHub Analytics and how we help developers analyze their GitHub profiles with beautiful visualizations.',
+    'Discover the story behind GitHub Analytics, meet our team, and learn about our mission to help developers gain deeper insights into their coding journey.',
   keywords: [
-    'GitHub Analytics',
-    'Developer Tools',
-    'Code Analysis',
-    'Open Source',
+    'about github analytics',
+    'developer tools team',
+    'github insights mission',
+    'coding analytics platform',
+    'developer productivity tools',
+    'github data visualization',
+    'open source analytics',
+    'developer community',
   ],
   openGraph: {
-    title: 'About GitHub Analytics',
+    title: 'About GitHub Analytics - Our Mission & Team',
     description:
-      'Discover how we transform GitHub data into meaningful insights for developers worldwide.',
+      'Meet the team behind GitHub Analytics and learn about our mission to empower developers with powerful insights.',
     type: 'website',
+    images: [
+      {
+        url: '/images/about-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'GitHub Analytics Team',
+      },
+    ],
   },
 };
 

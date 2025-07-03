@@ -5,7 +5,7 @@ import {
   LanguageStats,
   CommitActivity,
   SkillAnalysis,
-} from '@/types/github';
+} from '@/types/github.types';
 
 export class GitHubService {
   private octokit: Octokit;
@@ -181,7 +181,7 @@ export class GitHubService {
     return totalCommits;
   }
 
-  async getContributionCalendar(username: string): Promise<CommitActivity[]> {
+  async getContributionCalendar(): Promise<CommitActivity[]> {
     // This would typically require GraphQL API for accurate data
     // For now, we'll generate sample data
     const calendar: CommitActivity[] = [];

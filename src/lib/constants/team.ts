@@ -3,92 +3,110 @@ export interface TeamMember {
   name: string;
   role: string;
   bio: string;
+  skills: string[];
   social: {
     github?: string;
     twitter?: string;
     linkedin?: string;
     website?: string;
   };
-  skills: string[];
 }
 
 export const teamData: TeamMember[] = [
   {
     id: '1',
-    name: 'Pouya Birvand',
+    name: 'Alex Johnson',
     role: 'Lead Developer',
-    bio: 'Full-stack developer with 2+ years of experience in React, NextJS, and front architecture. Passionate about creating scalable solutions.',
+    bio: 'Full-stack developer with 8+ years of experience in React, Node.js, and data visualization. Passionate about creating intuitive user experiences.',
+    skills: ['React', 'TypeScript', 'Node.js', 'GraphQL', 'AWS'],
     social: {
-      github: 'https://github.com/pouyabirvand',
-      linkedin: 'https://linkedin.com/in/pouya-birvand',
-      website: 'https://portfolio-nine-black-48.vercel.app/',
+      github: 'https://github.com/alexjohnson',
+      twitter: 'https://twitter.com/alexjohnson',
+      linkedin: 'https://linkedin.com/in/alexjohnson',
+      website: 'https://alexjohnson.dev',
     },
-    skills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'AWS'],
   },
   {
     id: '2',
     name: 'Sarah Chen',
     role: 'UI/UX Designer',
-    bio: 'Creative designer focused on user-centered design and modern interfaces. Specializes in creating intuitive and beautiful user experiences.',
+    bio: 'Creative designer focused on user-centered design and accessibility. Specializes in creating beautiful, functional interfaces that users love.',
+    skills: [
+      'Figma',
+      'Design Systems',
+      'Prototyping',
+      'User Research',
+      'Accessibility',
+    ],
     social: {
       github: 'https://github.com/sarahchen',
       twitter: 'https://twitter.com/sarahchen',
       linkedin: 'https://linkedin.com/in/sarahchen',
     },
-    skills: ['Figma', 'Design Systems', 'Prototyping', 'User Research', 'CSS'],
   },
   {
     id: '3',
-    name: 'Michael Rodriguez',
-    role: 'Backend Engineer',
-    bio: 'Backend specialist with expertise in API design, database optimization, and microservices architecture. Loves solving complex problems.',
+    name: 'Mike Rodriguez',
+    role: 'Data Engineer',
+    bio: 'Data enthusiast with expertise in analytics, machine learning, and API integrations. Loves turning complex data into actionable insights.',
+    skills: [
+      'Python',
+      'Data Analysis',
+      'APIs',
+      'Machine Learning',
+      'PostgreSQL',
+    ],
     social: {
-      github: 'https://github.com/michaelrodriguez',
-      linkedin: 'https://linkedin.com/in/michaelrodriguez',
-      website: 'https://mrodriguez.tech',
+      github: 'https://github.com/mikerodriguez',
+      linkedin: 'https://linkedin.com/in/mikerodriguez',
+      website: 'https://mikerodriguez.tech',
     },
-    skills: ['Python', 'PostgreSQL', 'Docker', 'Kubernetes', 'GraphQL'],
   },
   {
     id: '4',
     name: 'Emily Watson',
-    role: 'Data Analyst',
-    bio: 'Data scientist with a passion for turning complex data into actionable insights. Expert in statistical analysis and data visualization.',
+    role: 'DevOps Engineer',
+    bio: 'Infrastructure specialist ensuring our platform runs smoothly and securely. Expert in cloud technologies and automated deployment pipelines.',
+    skills: ['Docker', 'Kubernetes', 'CI/CD', 'AWS', 'Monitoring'],
     social: {
       github: 'https://github.com/emilywatson',
       twitter: 'https://twitter.com/emilywatson',
       linkedin: 'https://linkedin.com/in/emilywatson',
     },
-    skills: ['Python', 'R', 'SQL', 'Machine Learning', 'Data Viz'],
   },
   {
     id: '5',
     name: 'David Kim',
-    role: 'DevOps Engineer',
-    bio: 'Infrastructure and deployment specialist ensuring our platform runs smoothly and scales efficiently. Expert in cloud technologies.',
+    role: 'Product Manager',
+    bio: 'Product strategist with a background in software development. Bridges the gap between user needs and technical implementation.',
+    skills: [
+      'Product Strategy',
+      'User Research',
+      'Agile',
+      'Analytics',
+      'Leadership',
+    ],
     social: {
       github: 'https://github.com/davidkim',
+      twitter: 'https://twitter.com/davidkim',
       linkedin: 'https://linkedin.com/in/davidkim',
-      website: 'https://davidkim.cloud',
     },
-    skills: ['AWS', 'Docker', 'Terraform', 'CI/CD', 'Monitoring'],
   },
   {
     id: '6',
     name: 'Lisa Thompson',
-    role: 'Product Manager',
-    bio: 'Product strategist with a focus on user needs and market trends. Bridges the gap between technical capabilities and user requirements.',
-    social: {
-      twitter: 'https://twitter.com/lisathompson',
-      linkedin: 'https://linkedin.com/in/lisathompson',
-      website: 'https://lisathompson.pm',
-    },
+    role: 'QA Engineer',
+    bio: 'Quality assurance specialist ensuring our platform delivers a bug-free experience. Expert in automated testing and performance optimization.',
     skills: [
-      'Product Strategy',
-      'User Research',
-      'Analytics',
-      'Agile',
-      'Leadership',
+      'Test Automation',
+      'Performance Testing',
+      'Cypress',
+      'Jest',
+      'Quality Assurance',
     ],
+    social: {
+      github: 'https://github.com/lisathompson',
+      linkedin: 'https://linkedin.com/in/lisathompson',
+    },
   },
 ];

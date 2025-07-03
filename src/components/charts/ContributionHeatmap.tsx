@@ -2,13 +2,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CommitActivity } from '@/types/github';
+import { CommitActivity } from '@/types/github.types';
 import { cn } from '@/lib/utils';
 import { Flame, Calendar, Target, TrendingUp } from 'lucide-react';
-
-interface ContributionHeatmapProps {
-  data: CommitActivity[];
-}
+import { ContributionHeatmapProps } from '@/types/contribution-heatmap.types';
 
 export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({
   data,
@@ -23,14 +20,6 @@ export const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({
       return 'bg-green-400/80 hover:bg-green-400 dark:bg-green-600/80 dark:hover:bg-green-600';
     return 'bg-green-500 hover:bg-green-600 dark:bg-green-500 dark:hover:bg-green-400';
   };
-
-  // const getIntensityLevel = (count: number): number => {
-  //   if (count === 0) return 0;
-  //   if (count <= 2) return 1;
-  //   if (count <= 4) return 2;
-  //   if (count <= 6) return 3;
-  //   return 4;
-  // };
 
   const weeks = [];
   for (let i = 0; i < data.length; i += 7) {

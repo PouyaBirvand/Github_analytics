@@ -2,13 +2,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { SkillAnalysis } from '@/types/github';
 import { formatNumber } from '@/lib/utils';
 import { Code, GitCommit, Calendar, Zap, TrendingUp } from 'lucide-react';
-
-interface SkillsOverviewProps {
-  skills: SkillAnalysis;
-}
+import { SkillsOverviewProps } from '@/types/skill-overview.types';
 
 export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
   const stats = [

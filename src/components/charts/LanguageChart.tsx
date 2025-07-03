@@ -3,13 +3,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LanguageStats } from '@/types/github';
 import { getLanguageColor } from '@/lib/utils';
 import { Code2, TrendingUp, Sparkles } from 'lucide-react';
-
-interface LanguageChartProps {
-  languages: LanguageStats;
-}
+import { LanguageChartProps } from '@/types/language-chart.types';
 
 export const LanguageChart: React.FC<LanguageChartProps> = ({ languages }) => {
   const data = Object.entries(languages)
