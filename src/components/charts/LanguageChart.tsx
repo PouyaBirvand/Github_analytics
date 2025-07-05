@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getLanguageColor } from '@/lib/utils';
+import { getLanguageColor } from '@/utils/helpers';
 import { Code2, TrendingUp, Sparkles } from 'lucide-react';
 import { LanguageChartProps } from '@/types/language-chart.types';
 

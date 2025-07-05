@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { formatNumber, getLanguageColor } from '@/lib/utils';
+import { formatNumber, getLanguageColor } from '@/utils/helpers';
 import { RepositoryListProps } from '@/types/repository-list.types';
 import {
   Star,

@@ -7,6 +7,7 @@ import {
   GitBranch,
   Star,
   Activity,
+  Swords,
 } from 'lucide-react';
 
 export const featuresData = [
@@ -89,5 +90,15 @@ export const featuresData = [
     color: 'text-gray-500',
     bgColor: 'bg-gray-500/10',
     gradient: 'from-gray-500 to-slate-500',
+  },
+  {
+    id: 'developer-battle',
+    icon: Swords,
+    title: 'Developer Battle',
+    description:
+      'Challenge developers by comparing their GitHub profiles based on code quality, commit activity, and project engagement.',
+    color: 'text-red-800',
+    bgColor: 'bg-gray-800/10',
+    gradient: 'from-red-500 to-slate-500',
   },
 ];

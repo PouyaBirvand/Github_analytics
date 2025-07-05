@@ -186,7 +186,7 @@ export const Footer: React.FC = () => {
             {/* Links and scroll to top */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
               <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
-                <Link
+                {/* <Link
                   href="/privacy"
                   className="hover:text-primary transition-colors"
                 >
@@ -197,15 +197,15 @@ export const Footer: React.FC = () => {
                   className="hover:text-primary transition-colors"
                 >
                   Terms
-                </Link>
+                </Link> */}
                 <span className="hidden sm:inline">
-                  © 2024 GitHub Analytics
+                  © 2025 GitHub Analytics
                 </span>
               </div>
 
               {/* Copyright for mobile */}
               <div className="sm:hidden text-xs text-muted-foreground">
-                © 2024 GitHub Analytics
+                © 2025 GitHub Analytics
               </div>
 
               <motion.button

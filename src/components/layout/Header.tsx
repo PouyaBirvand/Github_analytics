@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Github, BarChart3, Menu, X, Sparkles } from 'lucide-react';
+import { Github, BarChart3, Menu, X, Sparkles, Swords } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -82,6 +82,7 @@ export const Header: React.FC = () => {
               {[
                 { href: '/', label: 'Home', icon: null },
                 { href: '/about', label: 'About', icon: null },
+                { href: '/battle', label: 'Battle', icon: Swords },
               ].map((item, index) => (
                 <motion.div
                   key={item.href}
@@ -93,7 +94,7 @@ export const Header: React.FC = () => {
                     href={item.href}
                     className="relative group flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-all duration-300"
                   >
-                    {item.icon && <item.icon className="w-4 h-4" />}
+                    {item.icon && <item.icon className="w-5 h-5" />}
                     {item.label}
                     <motion.div
                       className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
@@ -180,6 +181,7 @@ export const Header: React.FC = () => {
                 {[
                   { href: '/', label: 'Home', icon: null },
                   { href: '/about', label: 'About', icon: null },
+                  { href: '/battle', label: 'Battle', icon: Swords },
                 ].map((item, index) => (
                   <motion.div
                     key={item.href}

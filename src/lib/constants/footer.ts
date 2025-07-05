@@ -1,4 +1,12 @@
-import { Github, Twitter, Linkedin, Mail, Home, Info } from 'lucide-react';
+import {
+  Github,
+  Twitter,
+  Linkedin,
+  Mail,
+  Home,
+  Info,
+  Swords,
+} from 'lucide-react';
 
 export const footerData = {
   socialLinks: [
@@ -25,6 +33,7 @@ export const footerData = {
   ],
 
   features: [
+    'Developer Battle Rankings',
     'Language Statistics',
     'Commit Activity Analysis',
     'Repository Insights',
@@ -45,6 +54,11 @@ export const footerData = {
       label: 'About',
       href: '/about',
       icon: Info,
+    },
+    {
+      label: 'Battle',
+      href: '/battle',
+      icon: Swords,
     },
     {
       label: 'GitHub',

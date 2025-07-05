@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatNumber } from '@/lib/utils';
+import { formatNumber } from '@/utils/helpers';
 import { Code, GitCommit, Calendar, Zap, TrendingUp } from 'lucide-react';
 import { SkillsOverviewProps } from '@/types/skill-overview.types';
 

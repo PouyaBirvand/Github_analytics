@@ -3,11 +3,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GradientText } from '@/components/ui/GradientText';
 import { ParticleBackground } from '@/components/ui/ParticleBackground';
-import { BarChart3, Github, TrendingUp } from 'lucide-react';
 
 export const AboutHero: React.FC = () => {
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <ParticleBackground />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-pink-50/50 dark:from-blue-950/20 dark:via-purple-950/20 dark:to-pink-950/20" />
 
@@ -18,31 +17,6 @@ export const AboutHero: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="space-y-6 sm:space-y-8"
         >
-          {/* Animated Icons */}
-          <div className="flex justify-center space-x-4 sm:space-x-6 mb-6 sm:mb-8">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="p-2 sm:p-3 md:p-4 bg-blue-500/10 rounded-full"
-            >
-              <BarChart3 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-500" />
-            </motion.div>
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-              className="p-2 sm:p-3 md:p-4 bg-purple-500/10 rounded-full"
-            >
-              <Github className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-purple-500" />
-            </motion.div>
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              className="p-2 sm:p-3 md:p-4 bg-pink-500/10 rounded-full"
-            >
-              <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-pink-500" />
-            </motion.div>
-          </div>
-
           {/* Main Title */}
           <GradientText
             text="About GitHub Analytics"

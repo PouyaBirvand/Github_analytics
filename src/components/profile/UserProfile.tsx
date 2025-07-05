@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatNumber, formatDate } from '@/lib/utils';
+import { formatNumber, formatDate } from '@/utils/helpers';
 import { UserProfileProps } from '@/types/user-profile.types';
 import {
   MapPin,
