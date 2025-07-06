@@ -18,6 +18,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="h-full"
+      data-testid="feature-card"
     >
       <Card className="h-full group hover:shadow-xl sm:hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 border-0 bg-gradient-to-br from-background to-muted/30 backdrop-blur-sm">
         <CardContent className="p-4 sm:p-6 md:p-8 text-center space-y-4 sm:space-y-6 relative overflow-hidden">
