@@ -64,7 +64,7 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
     >
       {/* Confetti Animation */}
       {showConfetti && battleResult.winner !== 'tie' && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 z-[9999] pointer-events-none overflow-hidden">
           {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
@@ -195,7 +195,6 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
             <motion.div
               animate={{
                 scale: [1, 1.2, 1],
-                rotate: [0, 180, 360],
               }}
               transition={{
                 duration: 3,
