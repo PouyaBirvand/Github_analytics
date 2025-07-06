@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/__tests__/__mocks__/next-navigation.js", "src/__tests__/lib/constants/styles.test.js", "__mocks__/framer-motion.jsx", "src/__tests__/__mocks__/lucide-react.js", "src/__tests__/__mocks__/shadcn-components.js", "src/__tests__/components/home/HeroSection.test.jsx"],
   "exclude": ["node_modules"]
 }
