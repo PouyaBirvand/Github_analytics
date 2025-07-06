@@ -6,7 +6,7 @@ import { ParticleBackground } from '@/components/ui/ParticleBackground';
 
 export const AboutHero: React.FC = () => {
   return (
-    <section className="relative py-16 sm:py-20 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative py-48 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <ParticleBackground />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-pink-50/50 dark:from-blue-950/20 dark:via-purple-950/20 dark:to-pink-950/20" />
 
