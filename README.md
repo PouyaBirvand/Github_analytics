@@ -2,6 +2,31 @@
 
 A comprehensive GitHub profile analytics dashboard built with Next.js, TypeScript, and Tailwind CSS. Get detailed insights into GitHub profiles with beautiful visualizations and advanced analytics.
 
+## 📸 Screen Shots
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://s6.uupload.ir/files/capture_k7q2.png"  alt="Homepage" />
+      <br />
+    </td>
+    <td align="center">
+      <img src="https://s6.uupload.ir/files/2_ed03.png"  alt="Analytics" />
+      <br />
+    </td>
+  </tr>
+  <tr align="center">
+        <td align="center">
+      <img src="https://s6.uupload.ir/files/3_5zxm.png"  alt="Analytics" />
+      <br />
+    </td>
+        <td align="center">
+      <img src="https://s6.uupload.ir/files/capture_ppd4.png"  alt="Analytics" />
+      <br />
+    </td>
+  </tr>
+</table>
+
+
 ## ✨ Features
 
 - **Profile Overview**: Complete user profile with stats and information
