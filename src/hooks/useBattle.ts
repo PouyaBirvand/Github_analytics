@@ -1,8 +1,7 @@
 'use client';
-
 import { useState, useCallback } from 'react';
 import { BattleResult } from '@/types/battle.types';
-import { BattleService } from '@/services/battle.service';
+import { createBattleService } from '@/services/battle.service';
 
 interface UseBattleReturn {
   battleResult: BattleResult | null;
@@ -22,9 +21,9 @@ export const useBattle = (): UseBattleReturn => {
       setIsLoading(true);
       setError(null);
       setBattleResult(null);
-
+      
       try {
-        const battleService = new BattleService();
+        const battleService = createBattleService();
         const result = await battleService.createBattle(username1, username2);
         setBattleResult(result);
       } catch (err) {

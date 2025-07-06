@@ -27,6 +27,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className={styles.container}
+      data-testid="search-form"
     >
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className="relative flex-1">
