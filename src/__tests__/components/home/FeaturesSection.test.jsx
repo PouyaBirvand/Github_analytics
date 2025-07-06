@@ -55,7 +55,7 @@ jest.mock('@/lib/constants/features', () => ({
 describe('FeaturesSection', () => {
   it('renders section with correct structure', () => {
     render(<FeaturesSection />);
-    
+
     const section = document.querySelector('section');
     expect(section).toBeInTheDocument();
     expect(section).toHaveClass('py-12', 'sm:py-16', 'md:py-20', 'lg:py-24');
@@ -63,26 +63,28 @@ describe('FeaturesSection', () => {
 
   it('renders main heading', () => {
     render(<FeaturesSection />);
-    
+
     expect(screen.getByText('Powerful Analytics Features')).toBeInTheDocument();
   });
 
   it('renders description text', () => {
     render(<FeaturesSection />);
-    
-    expect(screen.getByText(/Transform raw GitHub data into actionable insights/)).toBeInTheDocument();
+
+    expect(
+      screen.getByText(/Transform raw GitHub data into actionable insights/)
+    ).toBeInTheDocument();
   });
 
   it('renders all feature cards', () => {
     render(<FeaturesSection />);
-    
+
     const featureCards = screen.getAllByTestId('feature-card');
     expect(featureCards).toHaveLength(3);
   });
 
   it('renders feature cards with correct titles', () => {
     render(<FeaturesSection />);
-    
+
     expect(screen.getByText('Language Analytics')).toBeInTheDocument();
     expect(screen.getByText('Commit Patterns')).toBeInTheDocument();
     expect(screen.getByText('Profile Insights')).toBeInTheDocument();
@@ -90,36 +92,46 @@ describe('FeaturesSection', () => {
 
   it('renders feature cards with correct descriptions', () => {
     render(<FeaturesSection />);
-    
-    expect(screen.getByText('Comprehensive breakdown of programming languages')).toBeInTheDocument();
-    expect(screen.getByText('Visualize commit activity and patterns')).toBeInTheDocument();
-    expect(screen.getByText('Deep dive into GitHub profile statistics')).toBeInTheDocument();
+
+    expect(
+      screen.getByText('Comprehensive breakdown of programming languages')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Visualize commit activity and patterns')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Deep dive into GitHub profile statistics')
+    ).toBeInTheDocument();
   });
 
   it('has correct grid layout classes', () => {
     const { container } = render(<FeaturesSection />);
-    
+
     const grid = container.querySelector('.grid');
     expect(grid).toHaveClass('grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3');
   });
 
   it('has correct container max width', () => {
     const { container } = render(<FeaturesSection />);
-    
+
     const containerDiv = container.querySelector('.container');
     expect(containerDiv).toHaveClass('max-w-7xl');
   });
 
   it('has gradient background', () => {
     const { container } = render(<FeaturesSection />);
-    
+
     const section = container.querySelector('section');
-    expect(section).toHaveClass('bg-gradient-to-b', 'from-background', 'to-muted/20');
+    expect(section).toHaveClass(
+      'bg-gradient-to-b',
+      'from-background',
+      'to-muted/20'
+    );
   });
 
   it('applies responsive padding', () => {
     const { container } = render(<FeaturesSection />);
-    
+
     const section = container.querySelector('section');
     expect(section).toHaveClass('px-4', 'sm:px-6', 'lg:px-8');
   });

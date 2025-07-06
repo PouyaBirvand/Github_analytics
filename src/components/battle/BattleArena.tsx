@@ -19,7 +19,7 @@ export const BattleArena: React.FC = () => {
   const handleBattleStart = async (username1: string, username2: string) => {
     setBattleState('battling');
     setError(null);
-    
+
     try {
       const battleService = createBattleService();
       const result = await battleService.createBattle(username1, username2);
@@ -62,7 +62,7 @@ export const BattleArena: React.FC = () => {
             contributions, and community impact in real-time.
           </motion.p>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

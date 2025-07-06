@@ -55,11 +55,8 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </motion.header>
-      
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      />
+
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={handleMobileMenuClose} />
     </>
   );
 };

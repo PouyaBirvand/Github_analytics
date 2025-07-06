@@ -23,15 +23,18 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   external = false,
   className = '',
 }) => {
-  const baseClasses = "group inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300";
-  
+  const baseClasses =
+    'group inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300';
+
   const variants = {
-    primary: "bg-white text-gray-900 hover:bg-gray-100 shadow-2xl hover:shadow-white/20 font-bold",
-    secondary: "bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border border-white/20"
+    primary:
+      'bg-white text-gray-900 hover:bg-gray-100 shadow-2xl hover:shadow-white/20 font-bold',
+    secondary:
+      'bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border border-white/20',
   };
 
-  const linkProps = external 
-    ? { target: "_blank", rel: "noopener noreferrer" }
+  const linkProps = external
+    ? { target: '_blank', rel: 'noopener noreferrer' }
     : {};
 
   return (

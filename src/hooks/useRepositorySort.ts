@@ -5,7 +5,10 @@ import { Repository } from '@/types/repository-list.types';
 
 type SortBy = 'stars' | 'updated' | 'name' | 'forks';
 
-export const useRepositorySort = (repositories: Repository[], sortBy: SortBy) => {
+export const useRepositorySort = (
+  repositories: Repository[],
+  sortBy: SortBy
+) => {
   return useMemo(() => {
     return [...repositories].sort((a, b) => {
       switch (sortBy) {

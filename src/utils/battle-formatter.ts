@@ -10,11 +10,11 @@ export const formatBattleDescription = (battleResult: BattleResult): string => {
   const winner = getWinnerName(battleResult);
   const score1 = battleResult.participant1.battleStats.totalScore;
   const score2 = battleResult.participant2.battleStats.totalScore;
-  
+
   if (battleResult.winner === 'tie') {
     return `Epic tie! Both developers scored ${score1} points in this intense coding battle.`;
   }
-  
+
   return `${winner} wins with ${Math.max(score1, score2)} points! An epic developer battle between ${battleResult.participant1.user.login} and ${battleResult.participant2.user.login}.`;
 };
 
@@ -27,7 +27,7 @@ export const getWinnerName = (battleResult: BattleResult): string => {
   return winner.user.name || winner.user.login;
 };
 
-export const formatScore = (score: number, maxScore: number): string => 
+export const formatScore = (score: number, maxScore: number): string =>
   `${score}/${maxScore}`;
 
 export const formatPercentage = (value: number, total: number): string => {
@@ -41,7 +41,7 @@ const calculateAccountAge = (createdAt: string): string => {
   const diffTime = Math.abs(now.getTime() - created.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   const years = Math.floor(diffDays / 365);
-  
+
   if (years > 0) {
     return `${years} year${years > 1 ? 's' : ''}`;
   }
@@ -56,7 +56,7 @@ export const formatBattleStats = (
   participant: BattleParticipant
 ): Record<string, string> => {
   const { user, repositories, analytics } = participant;
-  
+
   return {
     totalRepos: repositories.length.toString(),
     totalStars: repositories

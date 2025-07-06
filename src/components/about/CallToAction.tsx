@@ -17,9 +17,24 @@ import { FeatureList } from './FeatureList';
 import { StatsGrid } from '@/components/ui/stats/StatsGrid';
 
 const ANIMATED_ICONS = [
-  { Icon: Sparkles, color: 'text-yellow-300', rotationDuration: 20, floatRange: [-10, 10, -10] as [number, number, number] },
-  { Icon: TrendingUp, color: 'text-green-300', rotationDuration: -25, floatRange: [10, -10, 10] as [number, number, number] },
-  { Icon: Zap, color: 'text-blue-300', rotationDuration: 30, floatRange: [-5, 15, -5] as [number, number, number] },
+  {
+    Icon: Sparkles,
+    color: 'text-yellow-300',
+    rotationDuration: 20,
+    floatRange: [-10, 10, -10] as [number, number, number],
+  },
+  {
+    Icon: TrendingUp,
+    color: 'text-green-300',
+    rotationDuration: -25,
+    floatRange: [10, -10, 10] as [number, number, number],
+  },
+  {
+    Icon: Zap,
+    color: 'text-blue-300',
+    rotationDuration: 30,
+    floatRange: [-5, 15, -5] as [number, number, number],
+  },
 ];
 
 const FEATURES = [
@@ -39,7 +54,7 @@ export const CallToAction: React.FC = () => {
   return (
     <section className="relative py-24 px-4 overflow-hidden">
       <AnimatedBackground />
-      
+
       <div className="relative z-10 container mx-auto text-center text-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -96,8 +111,8 @@ export const CallToAction: React.FC = () => {
               TrailingIcon={ArrowRight}
             >
               Start Analyzing Now
-              </CTAButton>
-            
+            </CTAButton>
+
             <CTAButton
               href="https://github.com"
               variant="secondary"

@@ -21,14 +21,8 @@ export const RepositoryControls: React.FC<RepositoryControlsProps> = ({
 }) => {
   return (
     <div className="flex lg:flex-row flex-col lg:items-center gap-3">
-      <ViewModeToggle
-        viewMode={viewMode}
-        onViewModeChange={onViewModeChange}
-      />
-      <SortOptions
-        sortBy={sortBy}
-        onSortChange={onSortChange}
-      />
+      <ViewModeToggle viewMode={viewMode} onViewModeChange={onViewModeChange} />
+      <SortOptions sortBy={sortBy} onSortChange={onSortChange} />
     </div>
   );
 };

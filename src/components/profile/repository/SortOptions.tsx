@@ -2,13 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import {
-  Star,
-  GitFork,
-  Code,
-  Calendar,
-  Filter,
-} from 'lucide-react';
+import { Star, GitFork, Code, Calendar, Filter } from 'lucide-react';
 
 type SortBy = 'stars' | 'updated' | 'name' | 'forks';
 

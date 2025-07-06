@@ -22,20 +22,20 @@ export const AnimatedIcon: React.FC<AnimatedIconProps> = ({
 }) => {
   return (
     <motion.div
-      animate={{ 
-        rotate: 360, 
-        y: floatRange 
+      animate={{
+        rotate: 360,
+        y: floatRange,
       }}
       transition={{
-        rotate: { 
-          duration: rotationDuration, 
-          repeat: Infinity, 
-          ease: 'linear' 
+        rotate: {
+          duration: rotationDuration,
+          repeat: Infinity,
+          ease: 'linear',
         },
-        y: { 
-          duration: floatDuration, 
-          repeat: Infinity, 
-          ease: 'easeInOut' 
+        y: {
+          duration: floatDuration,
+          repeat: Infinity,
+          ease: 'easeInOut',
         },
       }}
       className={`p-4 bg-white/10 rounded-full backdrop-blur-sm ${className}`}

@@ -23,13 +23,13 @@ export const BrandSection: React.FC = () => {
             GitHub Analytics
           </h3>
         </div>
-        
+
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-sm sm:max-w-md">
           Transform your GitHub data into beautiful, actionable insights.
-          Discover patterns, track progress, and showcase your coding
-          journey with our advanced analytics platform.
+          Discover patterns, track progress, and showcase your coding journey
+          with our advanced analytics platform.
         </p>
-        
+
         <SocialLinks />
       </div>
     </motion.div>

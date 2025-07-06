@@ -6,12 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { formatNumber, getLanguageColor } from '@/utils/helpers';
 import { Repository } from '@/types/repository-list.types';
 import { DateDisplay } from '@/components/common/DateDisplay';
-import {
-  Star,
-  GitFork,
-  ExternalLink,
-  Eye,
-} from 'lucide-react';
+import { Star, GitFork, ExternalLink, Eye } from 'lucide-react';
 
 interface RepositoryCardProps {
   repo: Repository;
@@ -133,31 +128,29 @@ export const RepositoryCard: React.FC<RepositoryCardProps> = ({
             </div>
 
             {/* Topics */}
-            {repo.topics &&
-              repo.topics.length > 0 &&
-              viewMode === 'grid' && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: index * 0.1 + 0.3 }}
-                  className="flex flex-wrap gap-2"
-                >
-                  {repo.topics.slice(0, 3).map(topic => (
-                    <motion.span
-                      key={topic}
-                      className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20 hover:bg-primary/20 transition-colors cursor-default"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {topic}
-                    </motion.span>
-                  ))}
-                  {repo.topics.length > 3 && (
-                    <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full border border-border">
-                      +{repo.topics.length - 3}
-                    </span>
-                  )}
-                </motion.div>
-              )}
+            {repo.topics && repo.topics.length > 0 && viewMode === 'grid' && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 + 0.3 }}
+                className="flex flex-wrap gap-2"
+              >
+                {repo.topics.slice(0, 3).map(topic => (
+                  <motion.span
+                    key={topic}
+                    className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20 hover:bg-primary/20 transition-colors cursor-default"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {topic}
+                  </motion.span>
+                ))}
+                {repo.topics.length > 3 && (
+                  <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full border border-border">
+                    +{repo.topics.length - 3}
+                  </span>
+                )}
+              </motion.div>
+            )}
 
             {/* Updated Date - Fixed Hydration Issue */}
             <DateDisplay date={repo.updated_at} />

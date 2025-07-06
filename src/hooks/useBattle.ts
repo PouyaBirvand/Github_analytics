@@ -21,7 +21,7 @@ export const useBattle = (): UseBattleReturn => {
       setIsLoading(true);
       setError(null);
       setBattleResult(null);
-      
+
       try {
         const battleService = createBattleService();
         const result = await battleService.createBattle(username1, username2);

@@ -9,13 +9,30 @@ import {
 
 const extractFrameworks = (repositories: Repository[]): string[] => {
   const frameworkKeywords = [
-    'react', 'vue', 'angular', 'svelte', 'next', 'nuxt', 'gatsby',
-    'express', 'fastify', 'koa', 'django', 'flask', 'rails', 'laravel',
-    'spring', 'dotnet', 'gin', 'fiber', 'actix', 'rocket',
+    'react',
+    'vue',
+    'angular',
+    'svelte',
+    'next',
+    'nuxt',
+    'gatsby',
+    'express',
+    'fastify',
+    'koa',
+    'django',
+    'flask',
+    'rails',
+    'laravel',
+    'spring',
+    'dotnet',
+    'gin',
+    'fiber',
+    'actix',
+    'rocket',
   ];
 
   const frameworks = new Set<string>();
-  
+
   repositories.forEach(repo => {
     // Check topics
     repo.topics?.forEach(topic => {
@@ -61,117 +78,120 @@ const generateContributionCalendar = (): CommitActivity[] => {
 };
 
 // API functions
-const createOctokitClient = (token?: string) => 
+const createOctokitClient = (token?: string) =>
   new Octokit({
     auth: token || process.env.GITHUB_TOKEN,
   });
 
-const getUser = (octokit: Octokit) => async (username: string): Promise<GitHubUser> => {
-  try {
-    const { data } = await octokit.rest.users.getByUsername({ username });
-    return data as GitHubUser;
-  } catch (error) {
-    throw new Error(`Failed to fetch user: ${username}`);
-  }
-};
-
-const getUserRepositories = (octokit: Octokit) => async (
-  username: string,
-  per_page = 100
-): Promise<Repository[]> => {
-  try {
-    const { data } = await octokit.rest.repos.listForUser({
-      username,
-      per_page,
-      sort: 'updated',
-      type: 'owner',
-    });
-    return data as Repository[];
-  } catch (error) {
-    throw new Error(`Failed to fetch repositories for: ${username}`);
-  }
-};
-
-const getLanguageStats = (octokit: Octokit) => async (username: string): Promise<LanguageStats> => {
-  const getUserReposFn = getUserRepositories(octokit);
-  const repositories = await getUserReposFn(username);
-  return calculateLanguageStats(repositories);
-};
-
-const getCommitActivity = (octokit: Octokit) => async (
-  username: string,
-  repo: string
-): Promise<CommitActivity[]> => {
-  try {
-    const { data } = await octokit.rest.repos.getCommitActivityStats({
-      owner: username,
-      repo,
-    });
-    
-    if (!data) return [];
-    
-    return data.map(week => ({
-      date: new Date(week.week * 1000).toISOString().split('T')[0],
-      count: week.total,
-    }));
-  } catch (error) {
-    return [];
-  }
-};
-
-const getTotalCommits = (octokit: Octokit) => async (
-  username: string,
-  repositories: Repository[]
-): Promise<number> => {
-  let totalCommits = 0;
-  const sampleRepos = repositories.slice(0, 5);
-  
-  for (const repo of sampleRepos) {
+const getUser =
+  (octokit: Octokit) =>
+  async (username: string): Promise<GitHubUser> => {
     try {
-      await octokit.rest.repos.listCommits({
-        owner: username,
-        repo: repo.name,
-        author: username,
-        per_page: 1,
-      });
-      totalCommits += Math.floor(Math.random() * 100) + 10;
+      const { data } = await octokit.rest.users.getByUsername({ username });
+      return data as GitHubUser;
     } catch (error) {
-      continue;
+      throw new Error(`Failed to fetch user: ${username}`);
     }
-  }
-  
-  return totalCommits;
-};
-
-const analyzeUserSkills = (octokit: Octokit) => async (username: string): Promise<SkillAnalysis> => {
-  const getUserFn = getUser(octokit);
-  const getUserReposFn = getUserRepositories(octokit);
-  const getLanguageStatsFn = getLanguageStats(octokit);
-  const getTotalCommitsFn = getTotalCommits(octokit);
-
-  const [user, repositories, languageStats] = await Promise.all([
-    getUserFn(username),
-    getUserReposFn(username),
-    getLanguageStatsFn(username),
-  ]);
-
-  const frameworks = extractFrameworks(repositories);
-  const totalCommits = await getTotalCommitsFn(username, repositories);
-  
-  const accountAge = Math.floor(
-    (Date.now() - new Date(user.created_at).getTime()) / (1000 * 60 * 60 * 24)
-  );
-  const avgCommitsPerDay = totalCommits / accountAge;
-
-  return {
-    languages: languageStats,
-    frameworks,
-    totalCommits,
-    avgCommitsPerDay,
-    mostActiveDay: 'Monday',
-    longestStreak: 0,
   };
-};
+
+const getUserRepositories =
+  (octokit: Octokit) =>
+  async (username: string, per_page = 100): Promise<Repository[]> => {
+    try {
+      const { data } = await octokit.rest.repos.listForUser({
+        username,
+        per_page,
+        sort: 'updated',
+        type: 'owner',
+      });
+      return data as Repository[];
+    } catch (error) {
+      throw new Error(`Failed to fetch repositories for: ${username}`);
+    }
+  };
+
+const getLanguageStats =
+  (octokit: Octokit) =>
+  async (username: string): Promise<LanguageStats> => {
+    const getUserReposFn = getUserRepositories(octokit);
+    const repositories = await getUserReposFn(username);
+    return calculateLanguageStats(repositories);
+  };
+
+const getCommitActivity =
+  (octokit: Octokit) =>
+  async (username: string, repo: string): Promise<CommitActivity[]> => {
+    try {
+      const { data } = await octokit.rest.repos.getCommitActivityStats({
+        owner: username,
+        repo,
+      });
+
+      if (!data) return [];
+
+      return data.map(week => ({
+        date: new Date(week.week * 1000).toISOString().split('T')[0],
+        count: week.total,
+      }));
+    } catch (error) {
+      return [];
+    }
+  };
+
+const getTotalCommits =
+  (octokit: Octokit) =>
+  async (username: string, repositories: Repository[]): Promise<number> => {
+    let totalCommits = 0;
+    const sampleRepos = repositories.slice(0, 5);
+
+    for (const repo of sampleRepos) {
+      try {
+        await octokit.rest.repos.listCommits({
+          owner: username,
+          repo: repo.name,
+          author: username,
+          per_page: 1,
+        });
+        totalCommits += Math.floor(Math.random() * 100) + 10;
+      } catch (error) {
+        continue;
+      }
+    }
+
+    return totalCommits;
+  };
+
+const analyzeUserSkills =
+  (octokit: Octokit) =>
+  async (username: string): Promise<SkillAnalysis> => {
+    const getUserFn = getUser(octokit);
+    const getUserReposFn = getUserRepositories(octokit);
+    const getLanguageStatsFn = getLanguageStats(octokit);
+    const getTotalCommitsFn = getTotalCommits(octokit);
+
+    const [user, repositories, languageStats] = await Promise.all([
+      getUserFn(username),
+      getUserReposFn(username),
+      getLanguageStatsFn(username),
+    ]);
+
+    const frameworks = extractFrameworks(repositories);
+    const totalCommits = await getTotalCommitsFn(username, repositories);
+
+    const accountAge = Math.floor(
+      (Date.now() - new Date(user.created_at).getTime()) / (1000 * 60 * 60 * 24)
+    );
+    const avgCommitsPerDay = totalCommits / accountAge;
+
+    return {
+      languages: languageStats,
+      frameworks,
+      totalCommits,
+      avgCommitsPerDay,
+      mostActiveDay: 'Monday',
+      longestStreak: 0,
+    };
+  };
 
 // Factory function
 export const createGitHubService = (token?: string) => {
@@ -183,7 +203,8 @@ export const createGitHubService = (token?: string) => {
     getLanguageStats: getLanguageStats(octokit),
     getCommitActivity: getCommitActivity(octokit),
     analyzeUserSkills: analyzeUserSkills(octokit),
-    getContributionCalendar: () => Promise.resolve(generateContributionCalendar()),
+    getContributionCalendar: () =>
+      Promise.resolve(generateContributionCalendar()),
   };
 };
 
@@ -199,7 +220,10 @@ export class GitHubService {
     return this.service.getUser(username);
   }
 
-  async getUserRepositories(username: string, per_page = 100): Promise<Repository[]> {
+  async getUserRepositories(
+    username: string,
+    per_page = 100
+  ): Promise<Repository[]> {
     return this.service.getUserRepositories(username, per_page);
   }
 
@@ -207,7 +231,10 @@ export class GitHubService {
     return this.service.getLanguageStats(username);
   }
 
-  async getCommitActivity(username: string, repo: string): Promise<CommitActivity[]> {
+  async getCommitActivity(
+    username: string,
+    repo: string
+  ): Promise<CommitActivity[]> {
     return this.service.getCommitActivity(username, repo);
   }
 

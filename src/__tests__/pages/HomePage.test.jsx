@@ -10,7 +10,7 @@ jest.mock('next/navigation', () => ({
   }),
 }));
 
-const mockOnSearch = jest.fn((username) => {
+const mockOnSearch = jest.fn(username => {
   mockPush(`/search?username=${username}`);
 });
 
@@ -21,7 +21,7 @@ describe('HomePage', () => {
 
   it('renders all main sections', () => {
     render(<HomePage />);
-    
+
     expect(screen.getByTestId('hero-section')).toBeInTheDocument();
     expect(screen.getByTestId('features-section')).toBeInTheDocument();
     expect(screen.getByTestId('cta-section')).toBeInTheDocument();
@@ -29,10 +29,10 @@ describe('HomePage', () => {
 
   it('handles search from hero section', async () => {
     render(<HomePage />);
-    
+
     const searchButton = screen.getByText('Search');
     fireEvent.click(searchButton);
-    
+
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalled();
     });
@@ -40,40 +40,41 @@ describe('HomePage', () => {
 
   it('manages loading state during search', async () => {
     render(<HomePage />);
-    
+
     const searchButton = screen.getByText('Search');
     expect(searchButton).toBeInTheDocument();
-    
+
     fireEvent.click(searchButton);
   });
 
   it('handles search from CTA section', async () => {
     render(<HomePage />);
-    
+
     const ctaButton = screen.getByText('CTA Search');
     fireEvent.click(ctaButton);
-    
+
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalled();
     });
   });
 
   it('handles search errors gracefully', async () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-    
+    const consoleSpy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
     mockPush.mockImplementationOnce(() => {
       throw new Error('Navigation failed');
     });
 
     render(<HomePage />);
-    
+
     const searchButton = screen.getByText('Search');
-    
+
     try {
       fireEvent.click(searchButton);
-    } catch (error) {
-    }
-    
+    } catch (error) {}
+
     consoleSpy.mockRestore();
   });
 });

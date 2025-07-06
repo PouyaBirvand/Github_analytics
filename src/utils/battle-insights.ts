@@ -52,8 +52,12 @@ const generateTechExplorerInsights = (
   const { participant1, participant2 } = battleResult;
   const insights: string[] = [];
 
-  const p1Languages = Object.keys(participant1.analytics.languages || {}).length;
-  const p2Languages = Object.keys(participant2.analytics.languages || {}).length;
+  const p1Languages = Object.keys(
+    participant1.analytics.languages || {}
+  ).length;
+  const p2Languages = Object.keys(
+    participant2.analytics.languages || {}
+  ).length;
 
   insights.push(`Languages: ${p1Languages} vs ${p2Languages}`);
 
@@ -86,7 +90,10 @@ const generateImpactPlayerInsights = (
 };
 
 // Insight generator mapping
-const insightGenerators: Record<string, (category: BattleCategoryResult, battleResult: BattleResult) => string[]> = {
+const insightGenerators: Record<
+  string,
+  (category: BattleCategoryResult, battleResult: BattleResult) => string[]
+> = {
   codeWarrior: generateCodeWarriorInsights,
   communityChampion: generateCommunityChampionInsights,
   techExplorer: generateTechExplorerInsights,
@@ -103,7 +110,9 @@ export const generateCategoryInsights = (
   return generator ? generator(category, battleResult) : [];
 };
 
-export const generateInsights = (battleResult: BattleResult): BattleCategoryResult[] => {
+export const generateInsights = (
+  battleResult: BattleResult
+): BattleCategoryResult[] => {
   return battleResult.categories.map(category => ({
     ...category,
     insights: generateCategoryInsights(category, battleResult),

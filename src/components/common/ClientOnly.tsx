@@ -7,9 +7,9 @@ interface ClientOnlyProps {
   fallback?: React.ReactNode;
 }
 
-export const ClientOnly: React.FC<ClientOnlyProps> = ({ 
-  children, 
-  fallback = null 
+export const ClientOnly: React.FC<ClientOnlyProps> = ({
+  children,
+  fallback = null,
 }) => {
   const [hasMounted, setHasMounted] = useState(false);
 

@@ -26,7 +26,9 @@ export const FeatureList: React.FC<FeatureListProps> = ({
     >
       {features.map((feature, index) => (
         <div key={index} className="flex items-center gap-2">
-          <div className={`w-3 h-3 ${feature.color} rounded-full animate-pulse`} />
+          <div
+            className={`w-3 h-3 ${feature.color} rounded-full animate-pulse`}
+          />
           <span>{feature.text}</span>
         </div>
       ))}

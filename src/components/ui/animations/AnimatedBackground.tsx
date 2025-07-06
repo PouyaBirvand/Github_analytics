@@ -19,7 +19,9 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   return (
     <>
       <ParticleBackground />
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradientFrom} ${gradientVia} ${gradientTo}`} />
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${gradientFrom} ${gradientVia} ${gradientTo}`}
+      />
       <div className={`absolute inset-0 ${overlay}`} />
     </>
   );

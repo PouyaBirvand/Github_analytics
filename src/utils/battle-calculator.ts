@@ -155,8 +155,15 @@ export const calculateBattleStats = (
   repositories: Repository[],
   analytics: SkillAnalysis
 ): BattleStats => {
-  const codeWarriorScore = calculateCodeWarriorScore(user, repositories, analytics);
-  const communityChampionScore = calculateCommunityChampionScore(user, repositories);
+  const codeWarriorScore = calculateCodeWarriorScore(
+    user,
+    repositories,
+    analytics
+  );
+  const communityChampionScore = calculateCommunityChampionScore(
+    user,
+    repositories
+  );
   const techExplorerScore = calculateTechExplorerScore(analytics, repositories);
   const growthMasterScore = calculateGrowthMasterScore(user, analytics);
   const impactPlayerScore = calculateImpactPlayerScore(repositories);
@@ -208,7 +215,8 @@ export const calculateBattle = (
   const overallWinner =
     participant1.battleStats.totalScore > participant2.battleStats.totalScore
       ? 'participant1'
-      : participant2.battleStats.totalScore > participant1.battleStats.totalScore
+      : participant2.battleStats.totalScore >
+          participant1.battleStats.totalScore
         ? 'participant2'
         : 'tie';
 
@@ -223,9 +231,11 @@ export const calculateBattle = (
 };
 
 // Factory function
-export const createBattleCalculator = (config: BattleConfig = DEFAULT_BATTLE_CONFIG) => ({
+export const createBattleCalculator = (
+  config: BattleConfig = DEFAULT_BATTLE_CONFIG
+) => ({
   calculateBattleStats,
-  calculateBattle: (p1: BattleParticipant, p2: BattleParticipant) => 
+  calculateBattle: (p1: BattleParticipant, p2: BattleParticipant) =>
     calculateBattle(p1, p2, config),
   config,
 });

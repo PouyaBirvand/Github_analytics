@@ -9,9 +9,9 @@ interface DateDisplayProps {
   className?: string;
 }
 
-export const DateDisplay: React.FC<DateDisplayProps> = ({ 
-  date, 
-  className = "text-xs text-muted-foreground flex items-center gap-1" 
+export const DateDisplay: React.FC<DateDisplayProps> = ({
+  date,
+  className = 'text-xs text-muted-foreground flex items-center gap-1',
 }) => {
   return (
     <div className={className}>
