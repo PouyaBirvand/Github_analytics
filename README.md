@@ -8,6 +8,7 @@ A comprehensive GitHub profile analytics dashboard built with Next.js, TypeScrip
 - **Repository Analytics**: Detailed repository insights and trending repos
 - **Language Distribution**: Interactive pie charts and skill radar
 - **Commit Activity**: Visual commit history and contribution patterns
+- **Developer Battle**: Challenge developers by comparing their GitHub profiles based on code quality, commit activity, and project engagement.
 - **Contribution Heatmap**: GitHub-style contribution calendar
 - **Advanced Statistics**: Comprehensive metrics and calculations
 - **Responsive Design**: Works perfectly on all devices
@@ -17,13 +18,14 @@ A comprehensive GitHub profile analytics dashboard built with Next.js, TypeScrip
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 14 with App Router
+- **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
+- **Testing**: Jest
 - **Styling**: Tailwind CSS
-- **UI Components**: Radix UI primitives
+- **UI Components**: Radix UI primitives / ShadCN
 - **Charts**: Recharts
 - **Animations**: Framer Motion
-- **Icons**: Lucide React
+- **Icons**: Lucide React / React Icons
 - **API**: GitHub REST API
 
 ## 📦 Installation
@@ -31,8 +33,8 @@ A comprehensive GitHub profile analytics dashboard built with Next.js, TypeScrip
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/github-analytics-pro.git
-cd github-analytics-pro
+git clone https://github.com/yourusername/github_analytics.git
+cd github_analytics
 ```
 
 2. Install dependencies:
@@ -170,8 +172,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Radix UI for accessible component primitives
 - Tailwind CSS for utility-first styling
 - Framer Motion for smooth animations
-
-## 📞 Support
 
 If you have any questions or need help, please open an issue or contact us at support@github-analytics-pro.com (fake)
 
