@@ -23,7 +23,7 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
   const getWinnerInfo = () => {
     if (battleResult.winner === 'tie') {
       return {
-        title: 'Epic Tie! 🤝',
+        title: 'Epic Tie!',
         subtitle:
           'Both developers are equally matched in this legendary battle!',
         color: 'from-yellow-500 to-orange-500',

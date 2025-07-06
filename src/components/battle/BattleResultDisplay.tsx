@@ -22,7 +22,7 @@ export const BattleResultDisplay: React.FC<BattleResultDisplayProps> = ({
   return (
     <div className="relative">
       <ParticleBackground />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/20 to-pink-50/20 dark:from-blue-950/20 dark:via-purple-950/20 dark:to-pink-950/20" />
+      <div className="absolute inset-0" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}

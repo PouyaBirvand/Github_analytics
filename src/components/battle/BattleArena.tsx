@@ -1,12 +1,11 @@
 'use client';
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BattleSetup } from './BattleSetup';
 import { BattleProgress } from './BattleProgress';
 import { BattleResultDisplay } from './BattleResultDisplay';
 import { BattleResult } from '@/types/battle.types';
-import { BattleService } from '@/services/battle.service';
+import { createBattleService } from '@/services/battle.service';
 import { GradientText } from '@/components/ui/GradientText';
 import { ParticleBackground } from '@/components/ui/ParticleBackground';
 
@@ -20,9 +19,9 @@ export const BattleArena: React.FC = () => {
   const handleBattleStart = async (username1: string, username2: string) => {
     setBattleState('battling');
     setError(null);
-
+    
     try {
-      const battleService = new BattleService();
+      const battleService = createBattleService();
       const result = await battleService.createBattle(username1, username2);
       setBattleResult(result);
       setBattleState('result');
@@ -39,7 +38,7 @@ export const BattleArena: React.FC = () => {
   };
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative py-48 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <ParticleBackground />
       <div>
         <motion.div
@@ -53,7 +52,6 @@ export const BattleArena: React.FC = () => {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
             gradient="from-purple-600 via-blue-600 to-pink-600"
           />
-
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,7 +62,7 @@ export const BattleArena: React.FC = () => {
             contributions, and community impact in real-time.
           </motion.p>
         </motion.div>
-
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,9 +71,7 @@ export const BattleArena: React.FC = () => {
           {battleState === 'setup' && (
             <BattleSetup onBattleStart={handleBattleStart} error={error} />
           )}
-
           {battleState === 'battling' && <BattleProgress />}
-
           {battleState === 'result' && battleResult && (
             <BattleResultDisplay
               battleResult={battleResult}
