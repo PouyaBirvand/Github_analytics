@@ -202,4 +202,4 @@ If you have any questions or need help, please open an issue or contact us at su
 
 ---
 
-Made with ❤️ by [Your Name](https://github.com/Pouyabirvand)
+Made with ❤️ by [Pouya Birvand](https://github.com/Pouyabirvand)
