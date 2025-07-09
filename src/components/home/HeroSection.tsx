@@ -12,7 +12,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   loading,
 }) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative py-48 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <ParticleBackground />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80 dark:from-blue-950/40 dark:via-purple-950/40 dark:to-pink-950/40" />
 

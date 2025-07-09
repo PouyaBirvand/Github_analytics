@@ -57,7 +57,7 @@ export default async function UserPage({ params }: UserPageProps) {
     const contributionCalendar = await githubService.getContributionCalendar();
 
     return (
-      <div className="container px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-32 min-h-screen space-y-6 sm:space-y-8">
+      <div className="container relative py-48 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <UserProfile user={user} />
         <SkillsOverview skills={analytics} />
 
