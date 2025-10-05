@@ -58,7 +58,7 @@ A comprehensive GitHub profile analytics dashboard built with Next.js, TypeScrip
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/github_analytics.git
+git clone https://github.com/PouyaBirvand/github_analytics.git
 cd github_analytics
 ```
 
