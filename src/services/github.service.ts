@@ -1,5 +1,3 @@
-// src/services/github.service.ts - نسخه اصلاح شده
-
 import { Octokit } from '@octokit/rest';
 import { graphql } from '@octokit/graphql';
 import {
@@ -10,8 +8,7 @@ import {
   SkillAnalysis,
 } from '@/types/github.types';
 
-// ✅ In-Memory Cache
-const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+const CACHE_TTL = 60 * 60 * 1000;
 const cache = new Map<string, { data: any; timestamp: number }>();
 
 function getCached(key: string) {
@@ -146,7 +143,6 @@ const getLanguageStats =
     return stats;
   };
 
-// ✅ FIX: Contribution Calendar با خطا handling بهتر
 const getContributionCalendar =
   (graphqlClient: typeof graphql) =>
   async (username: string): Promise<CommitActivity[]> => {
@@ -204,7 +200,6 @@ const getContributionCalendar =
     }
   };
 
-// ✅ FIX: بهبود محاسبه Total Commits
 const getTotalCommits =
   (graphqlClient: typeof graphql) =>
   async (username: string): Promise<number> => {
@@ -234,7 +229,6 @@ const getTotalCommits =
     }
   };
 
-// ✅ FIX: اصلاح calculateStreaks
 const calculateStreaks = (
   contributions: CommitActivity[]
 ): { current: number; longest: number } => {
@@ -290,7 +284,6 @@ const calculateStreaks = (
   };
 };
 
-// ✅ FIX: تحلیل مهارت‌ها با داده‌های دقیق‌تر
 const analyzeUserSkills =
   (octokit: Octokit, graphqlClient: typeof graphql) =>
   async (username: string): Promise<SkillAnalysis> => {
@@ -396,23 +389,4 @@ export class GitHubService {
   clearCache(pattern?: string) {
     clearCache(pattern);
   }
-}
-
-// ====== src/components/battle/BattleArena.tsx ======
-// ✅ حذف localStorage
-
-export function BattleArenaFix() {
-  // در handleBattleFromParams:
-  // ❌ حذف این خط:
-  // const cachedResult = loadCachedBattle(cacheKey);
-  
-  // ✅ به جای آن از in-memory cache استفاده کنید
-  // Cache به صورت خودکار توسط github.service مدیریت می‌شود
-  
-  // در startBattle:
-  // ❌ حذف این خط:
-  // localStorage.setItem(`battle_cache_${cacheKey}`, JSON.stringify(result));
-  
-  // ✅ فقط saveBattle را نگه دارید (اگر نیاز به persistent storage دارید)
-  // saveBattle(result);
 }
