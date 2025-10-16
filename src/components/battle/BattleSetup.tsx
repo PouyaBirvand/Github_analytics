@@ -1,11 +1,14 @@
+// src/components/battle/BattleSetup.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Zap, Shuffle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { BattlePreview } from './BattlePreview';
+// import { BattleHistory } from './BattleHistory';
+import { useSearchParams } from 'next/navigation';
 
 interface BattleSetupProps {
   onBattleStart: (username1: string, username2: string) => void;
@@ -16,9 +19,17 @@ export const BattleSetup: React.FC<BattleSetupProps> = ({
   onBattleStart,
   error,
 }) => {
+  const searchParams = useSearchParams();
   const [username1, setUsername1] = useState('');
   const [username2, setUsername2] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const user1 = searchParams.get('user1');
+    const user2 = searchParams.get('user2');
+    if (user1) setUsername1(user1);
+    if (user2) setUsername2(user2);
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -169,6 +180,7 @@ export const BattleSetup: React.FC<BattleSetupProps> = ({
       </div>
 
       <BattlePreview />
+      {/* <BattleHistory /> */}
     </motion.div>
   );
 };

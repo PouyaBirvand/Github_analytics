@@ -16,7 +16,7 @@ export const GradientText: React.FC<GradientTextProps> = ({
   if (animate) {
     return (
       <motion.h1
-        className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent ${className} ${
+        className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent pb-2 ${className} ${
           shouldWrap ? 'break-words hyphens-auto' : ''
         }`}
         initial={{ backgroundPosition: '0% 50%' }}

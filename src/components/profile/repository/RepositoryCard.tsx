@@ -50,7 +50,7 @@ export const RepositoryCard: React.FC<RepositoryCardProps> = ({
                   whileHover={{ scale: 1.02 }}
                 >
                   <a
-                    href={repo.url}
+                    href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:underline"

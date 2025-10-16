@@ -17,7 +17,7 @@ export const MissionSection: React.FC = () => {
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
             Transforming GitHub Data Into
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mt-2">
+            <span className="block text-transparent pb-2 bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mt-2">
               Meaningful Insights
             </span>
           </h2>

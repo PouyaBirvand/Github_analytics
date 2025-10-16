@@ -1,3 +1,4 @@
+// src/components/result/BattleResultDisplay.tsx
 'use client';
 
 import React from 'react';
@@ -25,6 +26,7 @@ export const BattleResultDisplay: React.FC<BattleResultDisplayProps> = ({
       <div className="absolute inset-0" />
 
       <motion.div
+        id="battle-result"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

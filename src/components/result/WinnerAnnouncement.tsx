@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Crown, Medal, Swords } from 'lucide-react';
 import { BattleResult } from '@/types/battle.types';
 import { ParticleBackground } from '../ui/ParticleBackground';
+import { formatNumber } from '@/utils/numberFormat';
 
 interface WinnerAnnouncementProps {
   battleResult: BattleResult;
@@ -38,7 +39,7 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
         : battleResult.participant2;
 
     return {
-      title: `${winner.user.name || winner.user.login} Wins! `,
+      title: `${winner.user.name || winner.user.login} Wins!`,
       subtitle: `@${winner.user.login} emerges victorious in this epic battle!`,
       color:
         battleResult.winner === 'participant1'
@@ -54,6 +55,24 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
 
   const winnerInfo = getWinnerInfo();
   const IconComponent = winnerInfo.icon;
+
+  // نسبت برد بر حسب درصد (فرمت ساده)
+  const totalScoreSum =
+    battleResult.participant1.battleStats.totalScore +
+    battleResult.participant2.battleStats.totalScore;
+
+  const winRatio =
+    battleResult.winner === 'tie'
+      ? '50/50'
+      : battleResult.winner === 'participant1'
+      ? `${Math.round(
+          (battleResult.participant1.battleStats.totalScore / totalScoreSum) *
+            100
+        )}%`
+      : `${Math.round(
+          (battleResult.participant2.battleStats.totalScore / totalScoreSum) *
+            100
+        )}%`;
 
   return (
     <motion.div
@@ -86,13 +105,7 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
                 ease: 'easeOut',
               }}
               className={`absolute top-0 left-1/2 w-3 h-3 rounded-full ${
-                [
-                  'bg-yellow-400',
-                  'bg-blue-400',
-                  'bg-purple-400',
-                  'bg-green-400',
-                  'bg-red-400',
-                ][i % 5]
+                ['bg-yellow-400', 'bg-blue-400', 'bg-purple-400', 'bg-green-400', 'bg-red-400'][i % 5]
               }`}
             />
           ))}
@@ -135,22 +148,6 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
             >
               <IconComponent className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
             </motion.div>
-
-            {/* {battleResult.winner !== 'tie' && (
-              <motion.div
-                animate={{ 
-                  y: [0, -5, 0],
-                  rotate: [0, 5, -5, 0]
-                }}
-                transition={{ 
-                  duration: 1.5, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500" />
-              </motion.div>
-            )} */}
           </motion.div>
 
           {/* Winner Title */}
@@ -185,7 +182,9 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
                 whileHover={{ scale: 1.1 }}
                 className="text-3xl sm:text-4xl font-bold text-blue-500 mb-2"
               >
-                {battleResult.participant1.battleStats.totalScore}
+                {formatNumber(
+                  battleResult.participant1.battleStats.totalScore
+                )}
               </motion.div>
               <div className="text-muted-foreground text-sm sm:text-base font-medium">
                 {battleResult.participant1.user.login}
@@ -211,7 +210,9 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
                 whileHover={{ scale: 1.1 }}
                 className="text-3xl sm:text-4xl font-bold text-purple-500 mb-2"
               >
-                {battleResult.participant2.battleStats.totalScore}
+                {formatNumber(
+                  battleResult.participant2.battleStats.totalScore
+                )}
               </motion.div>
               <div className="text-muted-foreground text-sm sm:text-base font-medium">
                 {battleResult.participant2.user.login}
@@ -229,7 +230,7 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-lg sm:text-xl font-bold text-foreground">
-                  {battleResult.categories.length}
+                  {formatNumber(battleResult.categories.length)}
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">
                   Categories
@@ -237,9 +238,11 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
               </div>
               <div>
                 <div className="text-lg sm:text-xl font-bold text-foreground">
-                  {Math.abs(
-                    battleResult.participant1.battleStats.totalScore -
-                      battleResult.participant2.battleStats.totalScore
+                  {formatNumber(
+                    Math.abs(
+                      battleResult.participant1.battleStats.totalScore -
+                        battleResult.participant2.battleStats.totalScore
+                    )
                   )}
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">
@@ -248,11 +251,7 @@ export const WinnerAnnouncement: React.FC<WinnerAnnouncementProps> = ({
               </div>
               <div>
                 <div className="text-lg sm:text-xl font-bold text-foreground">
-                  {battleResult.winner === 'tie'
-                    ? '50/50'
-                    : battleResult.winner === 'participant1'
-                      ? `${Math.round((battleResult.participant1.battleStats.totalScore / (battleResult.participant1.battleStats.totalScore + battleResult.participant2.battleStats.totalScore)) * 100)}%`
-                      : `${Math.round((battleResult.participant2.battleStats.totalScore / (battleResult.participant1.battleStats.totalScore + battleResult.participant2.battleStats.totalScore)) * 100)}%`}
+                  {winRatio}
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">
                   Win Ratio

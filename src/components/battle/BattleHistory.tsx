@@ -1,164 +1,220 @@
+// src/components/battle/BattleHistory.tsx
+// ✅ استفاده از in-memory storage
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Trophy, Users, ExternalLink } from 'lucide-react';
+import { History, Trash2, Search } from 'lucide-react';
 import { BattleResult } from '@/types/battle.types';
-import { BattleFormatter } from '@/utils/battle-formatter';
-import Image from 'next/image';
-
-interface BattleHistoryItem {
-  id: string;
-  battleResult: BattleResult;
-  timestamp: Date;
-}
+import {
+  loadBattleHistory,
+  deleteBattle,
+  clearBattleHistory,
+  getBattleStats,
+  searchBattleHistory,
+} from '@/utils/battle-storage';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { formatNumber } from '@/utils/numberFormat';
 
 export const BattleHistory: React.FC = () => {
-  const [battles, setBattles] = useState<BattleHistoryItem[]>([]);
+  const [battles, setBattles] = useState<BattleResult[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [stats, setStats] = useState({ totalBattles: 0, recentBattles: 0 });
 
   useEffect(() => {
-    // Load battle history from localStorage
-    const savedBattles = localStorage.getItem('battleHistory');
-    if (savedBattles) {
-      try {
-        const parsed = JSON.parse(savedBattles);
-        setBattles(
-          parsed.map((item: any) => ({
-            ...item,
-            timestamp: new Date(item.timestamp),
-          }))
-        );
-      } catch (error) {
-        console.error('Error loading battle history:', error);
-      }
-    }
+    loadHistory();
+    updateStats();
   }, []);
 
-  const saveBattle = (battleResult: BattleResult) => {
-    const newBattle: BattleHistoryItem = {
-      id: battleResult.battleId,
-      battleResult,
-      timestamp: new Date(),
-    };
-
-    const updatedBattles = [newBattle, ...battles].slice(0, 10); // Keep only last 10 battles
-    setBattles(updatedBattles);
-
-    localStorage.setItem('battleHistory', JSON.stringify(updatedBattles));
+  const loadHistory = () => {
+    const history = loadBattleHistory();
+    setBattles(history);
   };
 
-  if (battles.length === 0) {
+  const updateStats = () => {
+    const battleStats = getBattleStats();
+    setStats(battleStats);
+  };
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    if (term.trim() === '') {
+      loadHistory();
+    } else {
+      const results = searchBattleHistory(term);
+      setBattles(results);
+    }
+  };
+
+  const handleDeleteBattle = (battleId: string) => {
+    deleteBattle(battleId);
+    loadHistory();
+    updateStats();
+  };
+
+  const handleClearAll = () => {
+    if (confirm('Are you sure you want to clear all battle history?')) {
+      clearBattleHistory();
+      loadHistory();
+      updateStats();
+    }
+  };
+
+  const handleBattleClick = (battle: BattleResult) => {
+    const url = `/battle?user1=${battle.participant1.user.login}&user2=${battle.participant2.user.login}`;
+    window.location.href = url;
+  };
+
+  if (battles.length === 0 && searchTerm === '') {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center py-12 sm:py-16"
+        className="text-center p-8 bg-background/60 backdrop-blur-sm rounded-2xl border border-border/50"
       >
-        <div className="bg-background/60 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-border/50 max-w-md mx-auto">
-          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-muted-foreground mx-auto mb-4 sm:mb-6" />
-          <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">
-            No Battles Yet
-          </h3>
-          <p className="text-muted-foreground text-sm sm:text-base">
-            Start your first epic battle to see the history here!
-          </p>
-        </div>
+        <History className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+        <h3 className="text-xl font-bold text-foreground mb-2">No Battle History</h3>
+        <p className="text-muted-foreground">
+          Start your first battle to see it here!
+        </p>
       </motion.div>
     );
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="space-y-6 sm:space-y-8"
+      className="space-y-6"
     >
-      <div className="text-center space-y-3 sm:space-y-4">
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground flex items-center justify-center gap-3">
-          <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
-          Recent Battles
-        </h3>
-        <p className="text-muted-foreground text-sm sm:text-base">
-          Your latest epic developer showdowns
-        </p>
-      </div>
+      <div className="bg-background/60 backdrop-blur-sm rounded-2xl p-6 border border-border/50">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-3">
+            <History className="w-6 h-6 text-primary" />
+            <h3 className="text-2xl font-bold text-foreground">Battle History</h3>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Badge variant="secondary">
+              {stats.totalBattles} Total
+            </Badge>
+            <Badge variant="secondary">
+              {stats.recentBattles} This Week
+            </Badge>
+            {battles.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleClearAll}
+                className="text-destructive hover:text-destructive"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
+        </div>
 
-      <div className="space-y-4 sm:space-y-6">
-        {battles.map((battle, index) => (
-          <motion.div
-            key={battle.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.6 }}
-            whileHover={{ scale: 1.02, y: -2 }}
-            className="group bg-background/60 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
-            onClick={() => window.open(`/battle/${battle.id}`, '_blank')}
-          >
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-center space-x-4 flex-1 min-w-0">
-                {/* Fighter 1 */}
-                <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
-                  <div className="relative">
-                    <Image
-                      width={40}
-                      height={40}
-                      src={battle.battleResult.participant1.user.avatar_url}
-                      alt={battle.battleResult.participant1.user.login}
-                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-border/50 group-hover:border-primary/50 transition-colors"
-                    />
-                  </div>
-                  <span className="text-foreground font-medium text-sm sm:text-base truncate">
-                    {battle.battleResult.participant1.user.login}
-                  </span>
-                </div>
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Search battles by username..."
+            value={searchTerm}
+            onChange={e => handleSearch(e.target.value)}
+            className="pl-12 bg-background/50 border-border/50"
+          />
+        </div>
 
-                {/* VS */}
-                <div className="flex-shrink-0 px-2">
-                  <span className="text-muted-foreground font-bold text-xs sm:text-sm">
-                    VS
-                  </span>
-                </div>
+        <div className="space-y-4">
+          {battles.map((battle, index) => (
+            <motion.div
+              key={battle.battleId}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              onClick={() => handleBattleClick(battle)}
+              className="bg-background/40 backdrop-blur-sm rounded-xl p-4 border border-border/30 hover:border-primary/50 transition-all cursor-pointer group"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4 flex-1">
+                  <Avatar className="w-10 h-10 ring-2 ring-blue-500/30">
+                    <AvatarImage src={battle.participant1.user.avatar_url} />
+                    <AvatarFallback>
+                      {battle.participant1.user.login[0].toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
 
-                {/* Fighter 2 */}
-                <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
-                  <div className="relative">
-                    <Image
-                      width={40}
-                      height={40}
-                      src={battle.battleResult.participant2.user.avatar_url}
-                      alt={battle.battleResult.participant2.user.login}
-                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-border/50 group-hover:border-primary/50 transition-colors"
-                    />
-                  </div>
-                  <span className="text-foreground font-medium text-sm sm:text-base truncate">
-                    {battle.battleResult.participant2.user.login}
-                  </span>
-                </div>
-              </div>
-
-              {/* Battle Result */}
-              <div className="flex items-center space-x-3 sm:space-x-4 flex-shrink-0">
-                <div className="text-right">
-                  <div className="flex items-center text-yellow-500 mb-1">
-                    <Trophy className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs sm:text-sm font-semibold">
-                      {BattleFormatter.getWinnerName(battle.battleResult)}
+                  <div className="flex items-center space-x-2">
+                    <span className="font-semibold text-foreground">
+                      {battle.participant1.user.login}
                     </span>
+                    <Badge variant="outline" className="text-xs">
+                      {formatNumber(battle.participant1.battleStats.totalScore)}
+                    </Badge>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {battle.timestamp.toLocaleDateString()}
+
+                  <span className="text-muted-foreground font-bold">VS</span>
+
+                  <div className="flex items-center space-x-2">
+                    <span className="font-semibold text-foreground">
+                      {battle.participant2.user.login}
+                    </span>
+                    <Badge variant="outline" className="text-xs">
+                      {formatNumber(battle.participant2.battleStats.totalScore)}
+                    </Badge>
                   </div>
+
+                  <Avatar className="w-10 h-10 ring-2 ring-purple-500/30">
+                    <AvatarImage src={battle.participant2.user.avatar_url} />
+                    <AvatarFallback>
+                      {battle.participant2.user.login[0].toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
 
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-            </div>
+                <div className="flex items-center space-x-4">
+                  <Badge
+                    variant={battle.winner === 'tie' ? 'secondary' : 'default'}
+                    className="text-xs"
+                  >
+                    {battle.winner === 'tie'
+                      ? 'Tie'
+                      : battle.winner === 'participant1'
+                      ? `${battle.participant1.user.login} wins`
+                      : `${battle.participant2.user.login} wins`}
+                  </Badge>
 
-            {/* Hover gradient effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 rounded-xl transition-all duration-300" />
-          </motion.div>
-        ))}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={e => {
+                      e.stopPropagation();
+                      handleDeleteBattle(battle.battleId);
+                    }}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <Trash2 className="w-4 h-4 text-destructive" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="mt-2 text-xs text-muted-foreground">
+                {new Date(battle.createdAt).toLocaleString()}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {battles.length === 0 && searchTerm !== '' && (
+          <div className="text-center py-8">
+            <p className="text-muted-foreground">
+              No battles found for "{searchTerm}"
+            </p>
+          </div>
+        )}
       </div>
     </motion.div>
   );

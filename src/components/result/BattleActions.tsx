@@ -1,3 +1,4 @@
+// src/components/result/BattleActions.tsx
 'use client';
 
 import React from 'react';
@@ -5,6 +6,9 @@ import { motion } from 'framer-motion';
 import { Share2, RotateCcw, Download, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BattleResult } from '@/types/battle.types';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { useRouter } from 'next/navigation';
 
 interface BattleActionsProps {
   battleResult: BattleResult;
@@ -15,6 +19,8 @@ export const BattleActions: React.FC<BattleActionsProps> = ({
   battleResult,
   onNewBattle,
 }) => {
+  const router = useRouter();
+
   const handleShare = async () => {
     const shareData = {
       title: `${battleResult.participant1.user.login} vs ${battleResult.participant2.user.login} - Developer Battle`,
@@ -29,25 +35,34 @@ export const BattleActions: React.FC<BattleActionsProps> = ({
         console.log('Error sharing:', err);
       }
     } else {
-      // Fallback to clipboard
       navigator.clipboard.writeText(window.location.href);
-      // You could show a toast here
     }
   };
 
   const handleRematch = () => {
+    const user1 = battleResult.participant1.user.login;
+    const user2 = battleResult.participant2.user.login;
+    router.replace(`/battle?user1=${user1}&user2=${user2}`, { scroll: false });
     if (onNewBattle) {
       onNewBattle();
-    } else {
-      // Navigate to battle page with pre-filled usernames
-      const url = `/battle?user1=${battleResult.participant1.user.login}&user2=${battleResult.participant2.user.login}`;
-      window.location.href = url;
     }
   };
 
-  const handleDownload = () => {
-    // This would generate a PDF or image of the battle results
-    console.log('Download battle results');
+  const handleDownload = async () => {
+    const element = document.getElementById('battle-result');
+    if (!element) return;
+
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF({
+      orientation: 'landscape',
+      unit: 'px',
+      format: [canvas.width, canvas.height],
+    });
+
+    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.save(`${battleResult.participant1.user.login}-vs-${battleResult.participant2.user.login}.pdf`);
   };
 
   return (

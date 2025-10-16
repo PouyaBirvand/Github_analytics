@@ -1,3 +1,4 @@
+// src/app/battle/page.tsx
 import React from 'react';
 import { Metadata } from 'next';
 import { BattleArena } from '@/components/battle/BattleArena';

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Github, Twitter, Linkedin, Globe } from 'lucide-react';
 import { teamData } from '@/lib/constants/team';
+import Image from 'next/image';
 
 export const TeamSection: React.FC = () => {
   return (
@@ -42,15 +43,9 @@ export const TeamSection: React.FC = () => {
                   >
                     <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-500 p-1">
                       <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                        <span className="text-2xl font-bold text-primary">
-                          {member.name
-                            .split(' ')
-                            .map(n => n[0])
-                            .join('')}
-                        </span>
+                        <Image src="/mads.jpg" className='rounded-full object-cover' alt='avatar' width={50} height={50} />
                       </div>
                     </div>
-                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </motion.div>
 
                   <div className="space-y-2">

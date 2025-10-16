@@ -1,7 +1,7 @@
 'use client';
 
+import { Repository } from '@/types/github.types';
 import { useMemo } from 'react';
-import { Repository } from '@/types/repository-list.types';
 
 type SortBy = 'stars' | 'updated' | 'name' | 'forks';
 

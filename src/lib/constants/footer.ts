@@ -12,22 +12,22 @@ export const footerData = {
   socialLinks: [
     {
       name: 'GitHub',
-      url: 'https://github.com',
+      url: 'https://github.com/pouyabirvand',
       icon: Github,
     },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com',
-      icon: Twitter,
-    },
+    // {
+    //   name: 'Twitter',
+    //   url: 'https://twitter.com',
+    //   icon: Twitter,
+    // },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com',
+      url: 'https://linkedin.com/in/pouya-birvand',
       icon: Linkedin,
     },
     {
       name: 'Email',
-      url: 'mailto:contact@githubanalytics.com',
+      url: 'pooyabirvand@gmail.com',
       icon: Mail,
     },
   ],

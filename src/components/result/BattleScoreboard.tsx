@@ -4,6 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BattleResult } from '@/types/battle.types';
 import { Progress } from '@/components/ui/progress';
+import { formatNumber } from '@/utils/numberFormat';
+
 import {
   ChartNoAxesCombined,
   Flame,
@@ -70,7 +72,7 @@ export const BattleScoreboard: React.FC<BattleScoreboardProps> = ({
                   </span>
                 </div>
                 <span className="text-blue-500 font-bold text-xl sm:text-2xl">
-                  {participant1.battleStats.totalScore}
+                  {formatNumber(participant1.battleStats.totalScore)}
                 </span>
               </div>
               <div className="relative">
@@ -101,7 +103,7 @@ export const BattleScoreboard: React.FC<BattleScoreboardProps> = ({
                   </span>
                 </div>
                 <span className="text-purple-500 font-bold text-xl sm:text-2xl">
-                  {participant2.battleStats.totalScore}
+                  {formatNumber(participant2.battleStats.totalScore)}
                 </span>
               </div>
               <div className="relative">
@@ -150,19 +152,20 @@ export const BattleScoreboard: React.FC<BattleScoreboardProps> = ({
                 </div>
                 <div className="space-y-1">
                   <div className="text-blue-500 font-bold text-sm sm:text-base">
-                    {
+                    {formatNumber(
                       participant1.battleStats[
-                        category.key as keyof typeof participant1.battleStats
-                      ]
-                    }
+                      category.key as keyof typeof participant1.battleStats
+                      ] as number
+                    )}
                   </div>
                   <div className="text-purple-500 font-bold text-sm sm:text-base">
-                    {
+                    {formatNumber(
                       participant2.battleStats[
-                        category.key as keyof typeof participant2.battleStats
-                      ]
-                    }
+                      category.key as keyof typeof participant2.battleStats
+                      ] as number
+                    )}
                   </div>
+
                 </div>
               </motion.div>
             ))}

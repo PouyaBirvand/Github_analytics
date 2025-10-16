@@ -54,7 +54,7 @@ export default async function UserPage({ params }: UserPageProps) {
       githubService.analyzeUserSkills(username),
     ]);
 
-    const contributionCalendar = await githubService.getContributionCalendar();
+    const contributionCalendar = await githubService.getContributionCalendar(username);
 
     return (
       <div className="container relative py-48 md:py-60 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -78,4 +78,4 @@ export default async function UserPage({ params }: UserPageProps) {
   }
 }
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;

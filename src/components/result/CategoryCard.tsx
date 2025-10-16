@@ -6,6 +6,7 @@ import { BattleCategoryResult, BattleResult } from '@/types/battle.types';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, Award, Info } from 'lucide-react';
+import { formatNumber, formatInsightText } from '@/utils/numberFormat';
 
 interface CategoryCardProps {
   categoryResult: BattleCategoryResult;
@@ -43,11 +44,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
     return (
       <Badge
         variant="default"
-        className={`${
-          winner === 'participant1'
-            ? 'bg-blue-500/20 text-blue-600 border-blue-500/30'
-            : 'bg-purple-500/20 text-purple-600 border-purple-500/30'
-        }`}
+        className={`${winner === 'participant1'
+          ? 'bg-blue-500/20 text-blue-600 border-blue-500/30'
+          : 'bg-purple-500/20 text-purple-600 border-purple-500/30'
+          }`}
       >
         <TrendingUp className="w-3 h-3 mr-1" />
         {winnerUser.login} wins
@@ -105,7 +105,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                 </span>
               </div>
               <span className="text-blue-500 font-bold text-sm sm:text-base">
-                {participant1Score}/{category.maxScore}
+                {formatNumber(participant1Score)}/{formatNumber(category.maxScore)}
               </span>
             </div>
             <div className="relative">
@@ -132,7 +132,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                 </span>
               </div>
               <span className="text-purple-500 font-bold text-sm sm:text-base">
-                {participant2Score}/{category.maxScore}
+                {formatNumber(participant2Score)}/{formatNumber(category.maxScore)}
+
               </span>
             </div>
             <div className="relative">
@@ -172,7 +173,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                   className="text-sm text-muted-foreground flex items-start space-x-2"
                 >
                   <span className="text-primary mt-1">•</span>
-                  <span>{insight}</span>
+                  <span>{formatInsightText(insight)}</span>
                 </motion.li>
               ))}
             </ul>

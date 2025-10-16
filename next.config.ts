@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'recharts'],
   },
+  env: {
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN,
+  },
   images: {
     remotePatterns: [
       {

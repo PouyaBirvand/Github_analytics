@@ -11,6 +11,19 @@ interface BattleHeaderProps {
   battleResult: BattleResult;
 }
 
+const formatFollowers = (followers: number): string => {
+  if (followers >= 1000000) {
+    return `${(followers / 1000000).toFixed(1)}M`;
+  } else if (followers >= 1000) {
+    return `${(followers / 1000).toFixed(1)}K`;
+  }
+  return followers.toString();
+};
+
+interface BattleHeaderProps {
+  battleResult: BattleResult;
+}
+
 export const BattleHeader: React.FC<BattleHeaderProps> = ({ battleResult }) => {
   const { participant1, participant2 } = battleResult;
 
@@ -43,7 +56,6 @@ export const BattleHeader: React.FC<BattleHeaderProps> = ({ battleResult }) => {
           >
             <div className="relative">
               <motion.div whileHover={{ scale: 1.05 }} className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-md opacity-30" />
                 <Avatar className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 mx-auto relative z-10 ring-4 ring-blue-500/50 shadow-2xl">
                   <AvatarImage
                     src={participant1.user.avatar_url}
@@ -79,7 +91,7 @@ export const BattleHeader: React.FC<BattleHeaderProps> = ({ battleResult }) => {
                 )}
                 <Badge variant="secondary" className="text-xs">
                   <Users className="w-3 h-3 mr-1" />
-                  {participant1.user.followers} followers
+                  {formatFollowers(participant1.user.followers)} followers
                 </Badge>
               </div>
             </div>
@@ -120,7 +132,6 @@ export const BattleHeader: React.FC<BattleHeaderProps> = ({ battleResult }) => {
           >
             <div className="relative">
               <motion.div whileHover={{ scale: 1.05 }} className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-md opacity-30" />
                 <Avatar className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 mx-auto relative z-10 ring-4 ring-purple-500/50 shadow-2xl">
                   <AvatarImage
                     src={participant2.user.avatar_url}
@@ -156,7 +167,7 @@ export const BattleHeader: React.FC<BattleHeaderProps> = ({ battleResult }) => {
                 )}
                 <Badge variant="secondary" className="text-xs">
                   <Users className="w-3 h-3 mr-1" />
-                  {participant2.user.followers} followers
+                  {formatFollowers(participant2.user.followers)} followers
                 </Badge>
               </div>
             </div>

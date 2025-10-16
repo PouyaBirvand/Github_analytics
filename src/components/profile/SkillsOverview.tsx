@@ -52,9 +52,9 @@ export const SkillsOverview: React.FC<SkillsOverviewProps> = ({ skills }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center"
+        className="text-center space-y-2 pt-8"
       >
-        <h2 className="text-3xl font-bold mb-2">Skills Overview</h2>
+        <h2 className="text-3xl font-bold">Skills Overview</h2>
         <p className="text-muted-foreground">Your coding journey at a glance</p>
       </motion.div>
 
