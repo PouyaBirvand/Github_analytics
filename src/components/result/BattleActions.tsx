@@ -1,4 +1,3 @@
-// src/components/result/BattleActions.tsx
 'use client';
 
 import React from 'react';
